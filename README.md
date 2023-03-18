@@ -1,5 +1,6 @@
 ## Sports Betting Simulation Description
 Risk aversion adjusted optimized capital allocation for sports bets
+  Author: Jonathan Erdmann
 
 ## Project Goals
   1. Determine feasibility of betting strategy with simulated outcomes from real data
