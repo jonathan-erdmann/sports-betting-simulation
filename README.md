@@ -11,7 +11,9 @@ Risk aversion adjusted optimized capital allocation for sports bets
 
 ## Package Dependencies
   - RSQLite
-  - tidyVerse
+  - tidyverse
+  - dplyr
+  - tibble
   - sqldf
-  - 
+  - ggplot2
   
