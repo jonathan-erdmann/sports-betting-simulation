@@ -2,6 +2,8 @@
 Risk aversion adjusted optimized capital allocation for sports bets
   Author: Jonathan Erdmann
 
+Author: Jonathan Erdmann
+
 ## Project Goals
   1. Determine feasibility of betting strategy with simulated outcomes from real data
   2. Establish business rules for long-term profitability
