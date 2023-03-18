@@ -10,10 +10,10 @@ Risk aversion adjusted optimized capital allocation for sports bets
   The project will be written in R and utilize the RSQLite package for persistent data
 
 ## Package Dependencies
+  - DBI
   - RSQLite
   - tidyverse
   - dplyr
   - tibble
   - sqldf
   - ggplot2
-  
