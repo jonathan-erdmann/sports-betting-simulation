@@ -1,0 +1,979 @@
+id,league_id,name,team
+1,1,Boston Celtics,BOS
+2,1,Brooklyn Nets,BRK
+3,1,New York Knicks,NYY
+4,1,Philadelphia 76ers,PHI
+5,1,Toronto Raptors,TOR
+6,1,Chicago Bulls,CHI
+7,1,Cleveland Cavaliers,CLE
+8,1,Detroit Pistons,DET
+9,1,Indiana Pacers,IND
+10,1,Atlanta Hawks,ATL
+11,1,Charlotte Hornets,CHA
+12,1,Miami Heat,MIA
+13,1,Orlando Magic,ORL
+14,1,Washington Wizards,WAS
+15,1,Denver Nuggets,DEN
+16,1,Minnesota Timberwolves,MIN
+17,1,Oklahoma City Thunder,OKC
+18,1,Utah Jazz,UTA
+19,1,Golden State Warriors,GSW
+20,1,Los Angeles Clippers,LAC
+21,1,Los Angeles Lakers,LAL
+22,1,Phoenix Suns,PHO
+23,1,Sacramento Kings,SAC
+24,1,Dallas Mavericks,DAL
+25,1,Houston Rockets,HOU
+26,1,Memphis Grizzlies,MEM
+27,1,New Orleans Pelicans,NOP
+28,1,San Antonio Spurs,SAS
+29,2,Baltimore Orioles,BAL
+30,2,Boston Red Sox,BOS
+31,2,New York Yankees,NYY
+32,2,Tampa Bay Rays,TBR
+33,2,Toronto Blue Jays,TOR
+34,2,Chicago White Sox,CHIW
+35,2,Cleveland Guardians,CLE
+36,2,Detroit Tigers,DET
+37,2,Kansas City Royals,KCR
+38,2,Minnesota Twins,MIN
+39,2,Houston Astros,HOU
+40,2,Los Angeles Angels,LAA
+41,2,Oakland Athletics,OAK
+42,2,Seattle Mariners,SEA
+43,2,Texas Rangers,TEX
+44,2,Atlanta Braves,ATL
+45,2,Miami Marlins,MIA
+46,2,New York Mets,NYM
+47,2,Philadelphia Phillies,PHI
+48,2,Washington Nationals,WAS
+49,2,Chicago Cubs,CHIC
+50,2,Cincinnati Reds,CIN
+51,2,Milwaukee Brewers,MIL
+52,2,Pittsburgh Pirates,PIT
+53,2,St. Louis Cardinals,STL
+54,2,Arizona Diamondbacks,ARI
+55,2,Colorado Rockies,COL
+56,2,Los Angeles Dodgers,LAD
+57,2,San Diego Padres,SDP
+58,2,San Francisco Giants,SFG
+59,3,Buffalo Bills,BUF
+60,3,Miami Dolphins,MIA
+61,3,New England Patriots,NEP
+62,3,New York Jets,NYJ
+63,3,Baltimore Ravens,BAL
+64,3,Cincinnati Bengals,CIN
+65,3,Cleveland Browns,CLE
+66,3,Pittsburgh Steelers,PIT
+67,3,Houston Texans,HOU
+68,3,Indianapolis Colts,IND
+69,3,Jacksonville Jaguars,JAC
+70,3,Tennessee Titans,TEN
+71,3,Denver Broncos,DEN
+72,3,Kansas City Chiefs,KCC
+73,3,Las Vegas Raiders,LVR
+74,3,Los Angeles Chargers,LAC
+75,3,Dallas Cowboys,DAL
+76,3,New York Giants,NYG
+77,3,Philadelphia Eagles,PHI
+78,3,Washington Commanders,WAS
+79,3,Chicago Bears,CHIB
+80,3,Detroit Lions,DET
+81,3,Green Bay Packers,GBP
+82,3,Minnesota Vikings,MIN
+83,3,Atlanta Falcons,ATL
+84,3,Carolina Panthers,CAR
+85,3,New Orleans Saints,NOS
+86,3,Tampa Bay Buccaneers,TBB
+87,3,Arizona Cardinals,ARI
+88,3,Los Angeles Ram,LAR
+89,3,San Francisco 49ers,SF49
+90,3,Seattle Seahawks,SEA
+91,4,Boston Bruins,BOS
+92,4,Buffalo Sabres,BUF
+93,4,Detroit Red Wings,DET
+94,4,Florida Panthers,FLP
+95,4,Montreal Canadiens,MON
+96,4,Ottawa Senators,OTT
+97,4,Tampa Bay Lightning,TBL
+98,4,Toronto Maple Leafs,TOR
+99,4,Carolina Hurricanes,CAR
+100,4,Columbus Blue Jackets,CBJ
+101,4,New Jersey Devils,NJD
+102,4,New York Islanders,NYI
+103,4,New York Rangers,NYR
+104,4,Philadelphia Flyers,PHI
+105,4,Pittsburgh Penguins,PIT
+106,4,Washington Capitals,WAS
+107,4,Arizona Coyotes,ARI
+108,4,Chicago Blackhawks,CHI
+109,4,Colorado Avalanche,COL
+110,4,Dallas Stars,DAL
+111,4,Minnesota Wild,MIN
+112,4,Nashville Predators,NAS
+113,4,St. Louis Blues,STL
+114,4,Winnipeg Jets,WIN
+115,4,Anaheim Ducks,ANA
+116,4,Calgary Flames,CAL
+117,4,Edmonton Oilers,EDM
+118,4,Los Angeles Kings,LAK
+119,4,San Jose Sharks,SJS
+120,4,Seattle Kraken,SEA
+121,4,Vancouver Canucks,VAN
+122,4,Vegas Golden Knights,VGK
+123,5,Alabama,ALA
+124,5,Auburn,AUB
+125,5,Jacksonville State,JACK
+126,5,South Alabama,SALA
+127,5,Troy,TROY
+128,5,UAB,UAB
+129,5,Arizona,ARI
+130,5,Arizona State,ARIST
+131,5,Arkansas,ARK
+132,5,Arkansas State,ARKST
+133,5,California,CAL
+134,5,Fresno State,FRES
+135,5,San Diego State,SDS
+136,5,San Jose State,SJS
+137,5,Stanford,STAN
+138,5,UCLA,UCLA
+139,5,USC,USC
+140,5,Air Force,AF
+141,5,Colorado,COL
+142,5,Colorado State,COLST
+143,5,UCONN,UCONN
+144,5,FIU,FIU
+145,5,Florida,FLA
+146,5,Florida Atlantic,FLAATL
+147,5,Florida State,FLAST
+148,5,Miami,MIA
+149,5,South Florida,SFLA
+150,5,UCF,UCF
+151,5,Georgia,GA
+152,5,Georgia Southern,GAS
+153,5,Georgia State,GAST
+154,5,Georgia Tech,GAT
+155,5,Hawaii,HAW
+156,5,Boise State,BS
+157,5,Illinois,ILL
+158,5,Northern Illinois,NILL
+159,5,Northwestern,NW
+160,5,Ball State,BALLST
+161,5,Indiana,IN
+162,5,Notre Dame,ND
+163,5,Purdue,PUR
+164,5,Iowa,IOWA
+165,5,Iowa State,ISU
+166,5,Kansas,KU
+167,5,Kansas State,KST
+168,5,Kentucky,KEN
+169,5,Louisville,LOU
+170,5,Western Kentucky,WKEN
+171,5,Louisiana,LA
+172,5,Louisiana Tech,LATECH
+173,5,LSU,LSU
+174,5,Tulane,TUL
+175,5,UL Monroe,ULM
+176,5,Maryland,MARY
+177,5,Navy,NAVY
+178,5,Boston College,BOSC
+179,5,UMass,UMASS
+180,5,Central Michigan,CMU
+181,5,Eastern Michigan,EMU
+182,5,Michigan,UM
+183,5,Michigan State,MSU
+184,5,Western Michigan,WMU
+185,5,Minnesota,MIN
+186,5,Mississippi State,MSST
+187,5,Ole Miss,OLEMISS
+188,5,Southern Miss,SMISS
+189,5,Missouri,MIS
+190,5,Nebraska,NEB
+191,5,Nevada,NEV
+192,5,UNLV,UNLV
+193,5,Rutgers,RUT
+194,5,New Mexico,NM
+195,5,New Mexico State,NMST
+196,5,Army,ARMY
+197,5,Buffalo,BUFF
+198,5,Syracuse,SYR
+199,5,Appalachian State,APPST
+200,5,Charlotte,CHAR
+201,5,Duke,DUKE
+202,5,East Carolina,ECAR
+203,5,NC State,NCST
+204,5,North Carolina,NC
+205,5,Wake Forest,WAKE
+206,5,Akron,AKRON
+207,5,Bowling Green,BG
+208,5,Cincinnati,CIN
+209,5,Kent State,KENT
+210,5,Miami,MIA
+211,5,Ohio,OHIO
+212,5,Ohio State,OSU
+213,5,Toledo,TOL
+214,5,Oklahoma,OK
+215,5,Oklahoma State,OKST
+216,5,Tulsa,TUL
+217,5,Oregon,OR
+218,5,Oregon State,ORST
+219,5,Penn State,PENNST
+220,5,Pittsburgh,PIT
+221,5,Temple,TEMP
+222,5,Clemson,CLEM
+223,5,Coastal Carolina,CCAR
+224,5,South Carolina,SCAR
+225,5,Memphis,MEM
+226,5,Middle Tennessee,MIDTN
+227,5,Tennessee,TN
+228,5,Vanderbilt,VAN
+229,5,Baylor,BAY
+230,5,Houston,HOU
+231,5,North Texas,UNT
+232,5,Rice,RICE
+233,5,Sam Houston,SHST
+234,5,SMU,SMU
+235,5,TCU,TCU
+236,5,Texas,TEXAS
+237,5,Texas A&M,TAMU
+238,5,Texas State,TXST
+239,5,Texas Tech,TXTECH
+240,5,UTEP,UTEP
+241,5,UTSA,UTSA
+242,5,BYU,BYU
+243,5,Utah,UTAH
+244,5,Utah State,UTAHST
+245,5,James Madison,JMU
+246,5,Liberty,LIB
+247,5,Old Dominion,ODU
+248,5,Virginia,UVA
+249,5,Virginia Tech,VIRTECH
+250,5,Washington,WAS
+251,5,Washington State,WASST
+252,5,Marshall,MARSH
+253,5,West Virginia,WVU
+254,5,Wisconsin,WIS
+255,5,Wyoming,WY
+256,6,University at Albany SUNY,ALBANY
+257,6,Binghamton University,BINGHAMTON
+258,6,Bryant University,BRYANT
+259,6,University of Maine ,MAINE
+260,6,University of Maryland Baltimore County ,UMBC
+261,6,University of Massachusetts Lowell,UMASSLOWELL
+262,6,University of New Hampshire,UNH
+263,6,New Jersey Institute of Technology ,NJIT
+264,6,University of Vermont,UVT
+265,6,University of Central Florida ,UCF
+266,6,University of Cincinnati,CINC
+267,6,East Carolina University,ECAR
+268,6,University of Houston,HOU
+269,6,University of Memphis,MEM
+270,6,University of South Florida ,USF
+271,6,Southern Methodist University ,SMU
+272,6,Temple University,TEMPLE
+273,6,Tulane University,TULANE
+274,6,University of Tulsa,TULSA
+275,6,Wichita State University,WSU
+276,6,Boston College,BC
+277,6,Clemson University,CLEM
+278,6,Duke University,DUKE
+279,6,Florida State University,FSU
+280,6,Georgia Institute of Technology ,GATECH
+281,6,University of Louisville,LOUIS
+282,6,University of Miami,MIAMI
+283,6,University of North Carolina at Chapel Hill ,UNCCH
+284,6,North Carolina State University ,NCSTATE
+285,6,University of Notre Dame,NOTRE
+286,6,University of Pittsburgh ,PITT
+287,6,Syracuse University,SYRACUSE
+288,6,University of Virginia,UVA
+289,6,Virginia Polytechnic Institute and State University ,VATECH
+290,6,Wake Forest University,WAKE
+291,6,Austin Peay State University ,APEAY
+292,6,Bellarmine University,BELLARMINE
+293,6,University of Central Arkansas,UCARK
+294,6,Eastern Kentucky University,EKEN
+295,6,Florida Gulf Coast University,FGCU
+296,6,Jacksonville University,JACK
+297,6,Jacksonville State University,JACKST
+298,6,Kennesaw State University,KENN
+299,6,Liberty University,LIB
+300,6,Lipscomb University,LIPSCOMB
+301,6,University of North Alabama,UNALA
+302,6,University of North Florida,UNFLA
+303,6,Queens University of Charlotte,QUCHAR
+304,6,Stetson University,STETSON
+305,6,Davidson College,DAVIDSON
+306,6,University of Dayton,DAYTON
+307,6,Duquesne University,DUQENSE
+308,6,Fordham University,FORD
+309,6,George Mason University,GMU
+310,6,George Washington University,GWU
+311,6,La Salle University,LASALLE
+312,6,Loyola University Chicago ,LOYOLA
+313,6,University of Massachusetts Amherst ,UMASS
+314,6,University of Rhode Island,URI
+315,6,University of Richmond,RICHMOND
+316,6,St. Bonaventure University,STBON
+317,6,Saint Joseph's University,STJOSEPH
+318,6,Saint Louis University,STLOUIS
+319,6,Virginia Commonwealth University ,VCU
+320,6,Butler University,BUTLER
+321,6,Creighton University,CREIGHT
+322,6,DePaul University,DEPAUL
+323,6,Georgetown University,GEORGE
+324,6,Marquette University,MARQ
+325,6,Providence College,PROV
+326,6,St. John's University,STJOHN
+327,6,Seton Hall University,SETON
+328,6,University of Connecticut ,UCONN
+329,6,Villanova University,VILL
+330,6,Xavier University,XAV
+331,6,Eastern Washington University,EWASH
+332,6,University of Idaho,UIDAHO
+333,6,Idaho State University,IDAHOST
+334,6,University of Montana,UMONT
+335,6,Montana State University,MONTST
+336,6,Northern Arizona University,NARI
+337,6,University of Northern Colorado,NCOL
+338,6,Portland State University,PORTST
+339,6,California State University Sacramento ,SACST
+340,6,Weber State University,WEBST
+341,6,Campbell University,CAMPBELL
+342,6,Charleston Southern University,CHARLSOUTH
+343,6,Gardner–Webb University,GWEB
+344,6,High Point University,HIGHPOINT
+345,6,Longwood University,LONGWOOD
+346,6,Presbyterian College,PRESB
+347,6,Radford University,RADFORD
+348,6,University of North Carolina at Asheville ,UNCASH
+349,6,University of South Carolina Upstate ,USCUPSTATE
+350,6,Winthrop University,WINTHROP
+351,6,University of Illinois Urbana–Champaign ,UIUC
+352,6,Indiana University Bloomington ,UIBLOOM
+353,6,University of Iowa,IOWA
+354,6,University of Maryland College Park ,UMARY
+355,6,University of Michigan,UMICH
+356,6,Michigan State University,MICHST
+357,6,University of Minnesota,UMIN
+358,6,University of Nebraska–Lincoln ,NEB
+359,6,Northwestern University,NORTHWESTERN
+360,6,Ohio State University,OSU
+361,6,Pennsylvania State University ,PSU
+362,6,Purdue University,PUR
+363,6,Rutgers University–New Brunswick ,RUT
+364,6,University of Wisconsin–Madison ,WISC
+365,6,Baylor University,BAY
+366,6,Iowa State University,ISU
+367,6,University of Kansas,KAN
+368,6,Kansas State University,KANST
+369,6,University of Oklahoma,OK
+370,6,Oklahoma State University–Stillwater ,OKST
+371,6,University of Texas at Austin ,UT
+372,6,Texas Christian University ,TCU
+373,6,Texas Tech University,TTU
+374,6,West Virginia University,WVU
+375,6,California Polytechnic State University,CALPOLY
+376,6,California State University Bakersfield,CSUBAKE
+377,6,California State University Fullerton,CSUFULL
+378,6,California State University Northridge ,CSUNORTH
+379,6,University of Hawaiʻi at Mānoa ,HAW
+380,6,California State University Long Beach ,CSULONG
+381,6,University of California Davis ,CALDAVIS
+382,6,University of California Irvine ,CALIRVINE
+383,6,University of California Riverside ,CALRIVERSIDE
+384,6,University of California San Diego ,CALSD
+385,6,University of California Santa Barbara ,CALSB
+386,6,College of Charleston,CHARL
+387,6,University of Delaware,DEL
+388,6,Drexel University,DREXEL
+389,6,Elon University,ELON
+390,6,Hampton University,HAMPTON
+391,6,Hofstra University,HOFSTRA
+392,6,Monmouth University,MONMOUTH
+393,6,North Carolina Agricultural and Technical State University,NCAT
+394,6,Northeastern University,NORTHEASTERN
+395,6,Stony Brook University,STONY
+396,6,Towson University,TOWSON
+397,6,University of North Carolina at Wilmington ,UNCW
+398,6,College of William & Mary,CWM
+399,6,University of North Carolina at Charlotte ,UNCCHAR
+400,6,Florida Atlantic University ,FAU
+401,6,Florida International University ,FIU
+402,6,Louisiana Tech University,LATECH
+403,6,Middle Tennessee State University ,MTSTU
+404,6,University of North Texas,UNT
+405,6,Rice University,RICE
+406,6,University of Alabama at Birmingham ,UAB
+407,6,University of Texas at El Paso ,UTEP
+408,6,University of Texas at San Antonio ,UTSA
+409,6,Western Kentucky University ,WKU
+410,6,Cleveland State University,CLEVST
+411,6,University of Detroit Mercy,DETMERC
+412,6,Indiana University – Purdue University Indianapolis ,IUPUI
+413,6,University of Wisconsin-Milwaukee ,WISCMIL
+414,6,Northern Kentucky University ,NKU
+415,6,Oakland University,OAK
+416,6,Purdue University Fort Wayne ,PURDFW
+417,6,Robert Morris University,RMU
+418,6,University of Wisconsin–Green Bay ,WISCGB
+419,6,Wright State University,WRIGHT
+420,6,Youngstown State University,YOUNG
+421,6,Chicago State University,CHIST
+422,6,University of Hartford,HART
+423,6,Brown University,BROWN
+424,6,Columbia University,COLUMBIA
+425,6,Cornell University,CORN
+426,6,Dartmouth College,DART
+427,6,Harvard University,HARVARD
+428,6,University of Pennsylvania ,UPENN
+429,6,Princeton University,PRINCE
+430,6,Yale University,YALE
+431,6,Canisius College,CANISIUS
+432,6,Fairfield University,FAIRFIELD
+433,6,Iona College,IONA
+434,6,Manhattan College,MAN
+435,6,Marist College,MARIST
+436,6,Mount St. Mary's University,MTSTMARY
+437,6,Niagara University,NIAGRA
+438,6,Quinnipiac University,QUIN
+439,6,Rider University,RIDER
+440,6,Saint Peter's University,STPETE
+441,6,Siena College,SIENA
+442,6,University of Akron,AKRON
+443,6,Ball State University,BALLST
+444,6,Bowling Green State University ,BGU
+445,6,University at Buffalo,BUFF
+446,6,Central Michigan University,CMU
+447,6,Eastern Michigan University,EMU
+448,6,Kent State University,KENT
+449,6,Miami University ,MIAOH
+450,6,Northern Illinois University ,NIU
+451,6,Ohio University,OHIO
+452,6,University of Toledo,TOLEDO
+453,6,Western Michigan University,WMU
+454,6,Coppin State University,COPST
+455,6,Delaware State University,DELST
+456,6,Howard University,HOWARD
+457,6,University of Maryland Eastern Shore ,UMES
+458,6,Morgan State University,MORGST
+459,6,Norfolk State University,NORFOLK
+460,6,North Carolina Central University ,NCCU
+461,6,South Carolina State University ,SCST
+462,6,Belmont University,BELMONT
+463,6,Bradley University,BRADLEY
+464,6,Drake University,DRAKE
+465,6,University of Evansville,EVANSVILLE
+466,6,Illinois State University,ILLST
+467,6,Indiana State University,INDST
+468,6,Missouri State University,MISSOURIST
+469,6,Murray State University,MURRAY
+470,6,University of Northern Iowa ,UNI
+471,6,Southern Illinois University Carbondale ,SOUTHILL
+472,6,University of Illinois Chicago ,UIC
+473,6,Valparaiso University,VALP
+474,6,United States Air Force Academy ,AIR
+475,6,Boise State University,BOISE
+476,6,Colorado State University,COLST
+477,6,California State University Fresno ,CSUFRES
+478,6,University of Nevada Reno,NEVRENO
+479,6,University of New Mexico,UNM
+480,6,San Diego State University,SDST
+481,6,San Jose State University,SJST
+482,6,University of Nevada Las Vegas ,UNLV
+483,6,Utah State University,UTST
+484,6,University of Wyoming,WY
+485,6,Central Connecticut State University ,CCONNST
+486,6,Fairleigh Dickinson University,FARLEIGH
+487,6,Long Island University ,LIU
+488,6,Merrimack College,MERR
+489,6,Sacred Heart University,SACRED
+490,6,St. Francis College ,STFRANC
+491,6,Saint Francis University ,SFU
+492,6,Stonehill College,STONE
+493,6,Wagner College,WAG
+494,6,Eastern Illinois University,EILL
+495,6,Lindenwood University,LINDEN
+496,6,University of Arkansas at Little Rock ,UALR
+497,6,Morehead State University,MOREHEAD
+498,6,Southeast Missouri State University ,SEMO
+499,6,Southern Illinois University Edwardsville ,SIU
+500,6,University of Southern Indiana,SIND
+501,6,University of Tennessee at Martin ,UTENMART
+502,6,Tennessee State University,TENST
+503,6,Tennessee Technological University ,TENTECH
+504,6,University of Arizona,UARI
+505,6,Arizona State University,ASU
+506,6,University of California Berkeley,CAL
+507,6,University of Colorado Boulder,COL
+508,6,University of Oregon,ORE
+509,6,Oregon State University,OREST
+510,6,Stanford University,STAN
+511,6,University of California Los Angeles ,UCLA
+512,6,University of Southern California ,USC
+513,6,University of Utah,UTAH
+514,6,University of Washington,WASH
+515,6,Washington State University,WASHST
+516,6,American University,AMER
+517,6,United States Military Academy ,ARMY
+518,6,Boston University,BOSTON
+519,6,Bucknell University,BUCKNELL
+520,6,Colgate University,COLGATE
+521,6,College of the Holy Cross,HOLY
+522,6,Lafayette College,LAFAYETTE
+523,6,Lehigh University,LEHIGH
+524,6,Loyola University Maryland ,LOYOLAMARYLAND
+525,6,United States Naval Academy ,NAVY
+526,6,University of Alabama,ALA
+527,6,University of Arkansas,ARK
+528,6,Auburn University,AUB
+529,6,University of Florida,UF
+530,6,University of Georgia,UGA
+531,6,University of Kentucky,UK
+532,6,Louisiana State University ,LSU
+533,6,University of Mississippi ,OLEMISS
+534,6,Mississippi State University,MISSST
+535,6,University of Missouri,MISS
+536,6,University of South Carolina,USCAR
+537,6,University of Tennessee,TENN
+538,6,Texas A&M University,TAMU
+539,6,Vanderbilt University,VAND
+540,6,University of Tennessee at Chattanooga ,CHAT
+541,6,The Citadel,CITADEL
+542,6,East Tennessee State University ,ETSU
+543,6,Furman University,FUMAN
+544,6,Mercer University,MERCER
+545,6,Samford University,SAMFORD
+546,6,University of North Carolina at Greensboro ,UNCG
+547,6,Virginia Military Institute ,VMI
+548,6,Western Carolina University,WCU
+549,6,Wofford College,WOFFORD
+550,6,Houston Christian University ,HCU
+551,6,University of the Incarnate Word ,UIW
+552,6,Lamar University,LAMAR
+553,6,McNeese State University,MCNEESE
+554,6,University of New Orleans,UNO
+555,6,Nicholls State University ,NICHOLLS
+556,6,Northwestern State University,NWST
+557,6,Southeastern Louisiana University,SELA
+558,6,Texas A&M University-Corpus Christi,TAMUCC
+559,6,Texas A&M University–Commerce,TAMUCOM
+560,6,Alabama Agricultural and Mechanical University,ALAMU
+561,6,Alabama State University,ALST
+562,6,Alcorn State University,ALCORN
+563,6,University of Arkansas at Pine Bluff ,ARKPB
+564,6,Bethune–Cookman University,BETHUNE
+565,6,Florida Agricultural and Mechanical University ,FAMU
+566,6,Grambling State University,GRAMBST
+567,6,Jackson State University,JSU
+568,6,Mississippi Valley State University,MISSVST
+569,6,Prairie View A&M University,PVAMU
+570,6,Southern University,SOUTH
+571,6,Texas Southern University,TXSOUTH
+572,6,University of Denver,DEN
+573,6,University of Missouri–Kansas City ,UMKC
+574,6,University of North Dakota,UND
+575,6,North Dakota State University,NDST
+576,6,University of Nebraska Omaha,OMAHA
+577,6,Oral Roberts University,ORAL
+578,6,University of St. Thomas,STTHOM
+579,6,University of South Dakota,USD
+580,6,South Dakota State University,SDAKST
+581,6,Western Illinois University,WIU
+582,6,Appalachian State University,APPST
+583,6,Arkansas State University,ARKST
+584,6,Coastal Carolina University,COASTCAR
+585,6,Georgia Southern University,GSU
+586,6,Georgia State University,GAST
+587,6,James Madison University ,JMU
+588,6,University of Louisiana at Lafayette ,ULL
+589,6,University of Louisiana at Monroe ,ULM
+590,6,Marshall University,MARSH
+591,6,Old Dominion University,OLD
+592,6,University of South Alabama,USOUTHALA
+593,6,University of Southern Mississippi ,USOUTHMISS
+594,6,Texas State University,TXST
+595,6,Troy University,TROY
+596,6,Brigham Young University ,BYU
+597,6,Gonzaga University,ZAGS
+598,6,Loyola Marymount University,LOYOLAMARYMOUNT
+599,6,University of the Pacific,UPAC
+600,6,Pepperdine University,PEPPER
+601,6,University of Portland,PORT
+602,6,Saint Mary's College of California ,STMARY
+603,6,University of San Diego,SANDIEGO
+604,6,University of San Francisco,SANFRAN
+605,6,Santa Clara University,STCLARA
+606,6,Abilene Christian University,ABILENE
+607,6,California Baptist University ,CBU
+608,6,Utah Tech University,UTAHTECH
+609,6,Grand Canyon University,GRANDCANYON
+610,6,New Mexico State University,NMST
+611,6,Sam Houston State University,SAMHOU
+612,6,Seattle University,SEATTLE
+613,6,Southern Utah University,SOUTHUTAH
+614,6,Stephen F. Austin State University ,SFA
+615,6,Tarleton State University,TARLST
+616,6,Utah Valley University,UTAHVAL
+617,6,University of Texas at Arlington ,UTA
+618,6,University of Texas Rio Grande Valley ,UTRGV
+619,7,Abilene Christian University,ABILENE
+620,7,Alabama A&M University,ALAAMU
+621,7,Alabama State University,ALST
+622,7,Alcorn State University,ALCORN
+623,7,American University,AMER
+624,7,Appalachian State University,APPST
+625,7,Arizona State University,ASU
+626,7,Arkansas State University,ARKST
+627,7,Auburn University,AUB
+628,7,Austin Peay State University,AUSPSU
+629,7,Ball State University,BALLST
+630,7,Baylor University,BAY
+631,7,Bellarmine University,BELLARMINE
+632,7,Belmont University,BELMONT
+633,7,Bethune-Cookman University,BETHUNE
+634,7,Boise State University,BOISE
+635,7,Boston College,BC
+636,7,Boston University,BOSTON
+637,7,Bowling Green State University,BGST
+638,7,Bradley University,BRADLEY
+639,7,Brigham Young University,BYU
+640,7,Brown University,BROWN
+641,7,Bryant University,BRYANT
+642,7,Bucknell University,BUCKNELL
+643,7,Butler University,BUTLER
+644,7,California Baptist University,CALBAPT
+645,7,California Polytechnic State University – San Luis Obispo,CALPSU
+646,7,California State University – Bakersfield,CSUBAKE
+647,7,California State University – Fresno,CSUFRES
+648,7,California State University – Fullerton,CSUFULL
+649,7,California State University – Long Beach,CSULONG
+650,7,California State University – Northridge,CSUNORTH
+651,7,California State University – Sacramento,CSUSAC
+652,7,Campbell University,CAMPBELL
+653,7,Canisius College,CANISIUS
+654,7,Central Connecticut State University,CCONNST
+655,7,Central Michigan University,CMU
+656,7,Charleston Southern University,CHARLSOUTH
+657,7,Chicago State University,CHIST
+658,7,Clemson University,CLEM
+659,7,Cleveland State University,CLEVST
+660,7,Coastal Carolina University,COASTCAR
+661,7,Colgate University,COLGATE
+662,7,College of Charleston,CHARL
+663,7,College of the Holy Cross,HOLY
+664,7,Colorado State University,COLST
+665,7,Columbia University,COLUMBIA
+666,7,Coppin State University,COPST
+667,7,Cornell University,CORN
+668,7,Creighton University,CREIGHT
+669,7,Dartmouth College,DART
+670,7,Davidson College,DAVIDSON
+671,7,Delaware State University,DELST
+672,7,DePaul University,DEPAUL
+673,7,Drake University,DRAKE
+674,7,Drexel University,DREXEL
+675,7,Duke University,DUKE
+676,7,Duquesne University,DUQENSE
+677,7,East Carolina University,ECAR
+678,7,East Tennessee State University,ETENNST
+679,7,Eastern Illinois University,EILL
+680,7,Eastern Kentucky University,EKEN
+681,7,Eastern Michigan University,EMU
+682,7,Eastern Washington University,EWASH
+683,7,Elon University,ELON
+684,7,Fairfield University,FAIRFIELD
+685,7,Fairleigh Dickinson University,FARLEIGH
+686,7,Fairleigh Dickinson University – College at Florham,FAIRLEIGH
+687,7,Florida A&M University,FAMU
+688,7,Florida Atlantic University,FAU
+689,7,Florida Gulf Coast University,FGCU
+690,7,Florida International University,FIU
+691,7,Florida State University,FSU
+692,7,Fordham University,FORD
+693,7,Furman University,FUMAN
+694,7,Gardner-Webb University,GWEB
+695,7,George Mason University,GMU
+696,7,George Washington University,GWU
+697,7,Georgetown University,GEORGE
+698,7,Georgia Southern University,GSU
+699,7,Georgia State University,GAST
+700,7,Georgia Tech University,GATECH
+701,7,Gonzaga University,ZAGS
+702,7,Grambling State University,GRAMBST
+703,7,Grand Canyon University,GRANDCANYON
+704,7,Hampton University,HAMPTON
+705,7,Harvard University,HARVARD
+706,7,High Point University,HIGHPOINT
+707,7,Hofstra University,HOFSTRA
+708,7,Houston Baptist University,HOUBAPT
+709,7,Howard University,HOWARD
+710,7,Idaho State University,IDAHOST
+711,7,Illinois State University,ILLST
+712,7,Indiana State University,INDST
+713,7,Indiana University,IU
+714,7,Indiana University-Purdue University – Indianapolis,IUPUI
+715,7,Iona College,IONA
+716,7,Iowa State University,ISU
+717,7,Jackson State University,JSU
+718,7,Jacksonville State University,JACKST
+719,7,Jacksonville University,JACK
+720,7,James Madison University,JAMES
+721,7,Kansas State University,KANST
+722,7,Kennesaw State University,KENN
+723,7,Kent State University,KENT
+724,7,Kent State University – Tuscarawas,KENT
+725,7,La Salle University,LASALLE
+726,7,Lafayette College,LAFAYETTE
+727,7,Lamar University,LAMAR
+728,7,Lehigh University,LEHIGH
+729,7,Liberty University,LIB
+730,7,Lindenwood University,LINDEN
+731,7,Lipscomb University,LIPSCOMB
+732,7,Long Island University,LIU
+733,7,Longwood University,LONGWOOD
+734,7,Louisiana State University,LSU
+735,7,Louisiana Tech University,LATECH
+736,7,Loyola Marymount University,LOYOLAMARYMOUNT
+737,7,Loyola University Chicago,LOYOLA
+738,7,Loyola University Maryland,LOYOLAMARYLAND
+739,7,Manhattan College,MAN
+740,7,Marist College,MARIST
+741,7,Marquette University,MARQ
+742,7,Marshall University,MARSH
+743,7,McNeese State University,MCNEESE
+744,7,Mercer University,MERCER
+745,7,Merrimack College,MERR
+746,7,Miami University,MIAMI
+747,7,Michigan State University,MICHST
+748,7,Middle Tennessee State University,MIDTENN
+749,7,Mississippi State University,MISSST
+750,7,Mississippi Valley State University,MISSVST
+751,7,Missouri State University,MISSOURIST
+752,7,Monmouth University,MONMOUTH
+753,7,Montana State University,MONTST
+754,7,Morehead State University,MOREHEAD
+755,7,Morgan State University,MORGST
+756,7,Mount St. Mary's University,MTSTMARY
+757,7,Murray State University,MURRAY
+758,7,New Jersey Institute of Technology,NJIT
+759,7,New Mexico State University,NMST
+760,7,Niagara University,NIAGRA
+761,7,Nicholls State University,NICHOLLS
+762,7,Norfolk State University,NORFOLK
+763,7,North Carolina A&T State University,NCAT
+764,7,North Carolina Central University,NCCENT
+765,7,North Carolina State University,NCST
+766,7,North Dakota State University,NDST
+767,7,Northeastern University,NORTHEASTERN
+768,7,Northern Arizona University,NARI
+769,7,Northern Illinois University,NIU
+770,7,Northern Kentucky University,NKU
+771,7,Northwestern State University of Louisiana,NWSTL
+772,7,Northwestern University,NORTHWESTERN
+773,7,Oakland University,OAK
+774,7,Ohio State University,OSU
+775,7,Ohio University,OHIO
+776,7,Oklahoma State University,OKST
+777,7,Old Dominion University,OLD
+778,7,Oral Roberts University,ORAL
+779,7,Oregon State University,OREST
+780,7,Penn State,PSU
+781,7,Pepperdine University,PEPPER
+782,7,Portland State University,PORTST
+783,7,Prairie View A & M University,PVAM
+784,7,Presbyterian College,PRESB
+785,7,Princeton University,PRINCE
+786,7,Providence College,PROV
+787,7,Purdue University,PUR
+788,7,Purdue University – Fort Wayne,PURDFW
+789,7,Quinnipiac University,QUIN
+790,7,Radford University,RADFORD
+791,7,Rice University,RICE
+792,7,Rider University,RIDER
+793,7,Robert Morris University – Pennsylvania,RMU
+794,7,Rutgers University,RUT
+795,7,Sacred Heart University,SACRED
+796,7,Saint Francis University,STFRANC
+797,7,Saint Joseph's University,STJOSEPH
+798,7,Saint Louis University,STLOUIS
+799,7,Saint Mary's College of California,STMARYCAL
+800,7,Saint Peter's University,STPETE
+801,7,Sam Houston State University,SAMHOU
+802,7,Samford University,SAMFORD
+803,7,San Diego State University,SDST
+804,7,San Jose State University,SJST
+805,7,Santa Clara University,STCLARA
+806,7,Savannah State University,SAVANNAH
+807,7,Seattle University,SEATTLE
+808,7,Seton Hall University,SETON
+809,7,Siena College,SIENA
+810,7,South Carolina State University,SCST
+811,7,South Dakota State University,SDAKST
+812,7,Southeast Missouri State University,SMISSST
+813,7,Southeastern Louisiana University,SELA
+814,7,Southern Illinois University Carbondale,SIUCARB
+815,7,Southern Illinois University Edwardsville,SIUEDW
+816,7,Southern Methodist University – SMU,SMU
+817,7,Southern University & A&M College,SOUTHAMU
+818,7,Southern Utah University,SOUTHUTAH
+819,7,St. Bonaventure University,STBON
+820,7,St. John's University – New York,STJOHNNY
+821,7,Stanford University,STAN
+822,7,Stephen F Austin State University,SFA
+823,7,Stetson University,STETSON
+824,7,Stonehill College,STONE
+825,7,SUNY Binghamton University,SUNYBING
+826,7,SUNY Stony Brook University,SUNYSB
+827,7,SUNY University at Albany,SUNYALB
+828,7,SUNY University at Buffalo,SUNYBUFF
+829,7,Syracuse University,SYRACUSE
+830,7,Tarleton State University,TARLST
+831,7,Temple University,TEMPLE
+832,7,Tennessee State University,TENST
+833,7,Tennessee Technological University,TENNTECH
+834,7,Texas A&M University,TAMU
+835,7,Texas A&M University – Corpus Christi,TAMUCC
+836,7,Texas Christian University,TCU
+837,7,Texas Southern University,TXSOUTH
+838,7,Texas State University,TXST
+839,7,Texas Tech University,TTU
+840,7,Towson University,TOWSON
+841,7,Troy University,TROY
+842,7,Tulane University,TULANE
+843,7,United States Air Force Academy,AIR
+844,7,United States Military Academy,USMA
+845,7,United States Naval Academy,USNA
+846,7,University of Akron,AKRON
+847,7,University of Alabama,ALA
+848,7,University of Alabama – Birmingham,UAB
+849,7,University of Arizona,UARI
+850,7,University of Arkansas,ARK
+851,7,University of Arkansas at Little Rock,UARKLR
+852,7,University of Arkansas at Pine Bluff,UARKPB
+853,7,University of California – Berkeley,CAL
+854,7,University of California – Davis,CALDAVIS
+855,7,University of California – Irvine,CALIRVINE
+856,7,University of California – Los Angeles – UCLA,UCLA
+857,7,University of California – Riverside,CALRIVERSIDE
+858,7,University of California – San Diego,CALSD
+859,7,University of California – Santa Barbara,CALSB
+860,7,University of Central Arkansas,UCARK
+861,7,University of Central Florida,UCF
+862,7,University of Cincinnati,CINC
+863,7,University of Colorado – Boulder,COL
+864,7,University of Connecticut,UCONN
+865,7,University of Dayton,DAYTON
+866,7,University of Delaware,DEL
+867,7,University of Denver,DEN
+868,7,University of Detroit Mercy,DETMERC
+869,7,University of Evansville,EVANSVILLE
+870,7,University of Florida,UF
+871,7,University of Georgia,UGA
+872,7,University of Hawaii at Manoa,HAW
+873,7,University of Houston,HOU
+874,7,University of Idaho,UIDAHO
+875,7,University of Illinois,UILL
+876,7,University of Illinois at Chicago,UIC
+877,7,University of Iowa,IOWA
+878,7,University of Kansas,KAN
+879,7,University of Kentucky,UK
+880,7,University of Louisiana,ULA
+881,7,University of Louisiana – Monroe,ULAM
+882,7,University of Louisville,LOUIS
+883,7,University of Maine,UMAINE
+884,7,University of Maryland,UMARYLAND
+885,7,University of Maryland – Baltimore County,UMBC
+886,7,University of Maryland Eastern Shore,UMARYES
+887,7,University of Massachusetts – Amherst,UMASSAM
+888,7,University of Massachusetts – Lowell,UMASSLOW
+889,7,University of Memphis,MEM
+890,7,University of Miami,MIAMI
+891,7,University of Michigan,UMICH
+892,7,University of Minnesota,UMIN
+893,7,University of Mississippi,OLEMISS
+894,7,University of Missouri,MISS
+895,7,University of Missouri – Kansas City,UMISSKC
+896,7,University of Montana,UMONT
+897,7,University of Nebraska,NEB
+898,7,University of Nebraska at Omaha,NEBOMAHA
+899,7,University of Nevada – Las Vegas,UNLV
+900,7,University of Nevada – Reno,NEVRENO
+901,7,University of New Hampshire,UNH
+902,7,University of New Mexico,UNM
+903,7,University of New Orleans,UNO
+904,7,University of North Alabama,UNALA
+905,7,University of North Carolina – Greensboro,UNCGREEN
+906,7,University of North Carolina – Wilmington,UNCWILM
+907,7,University of North Carolina Asheville,UNCASH
+908,7,University of North Carolina at Chapel Hill,UNC
+909,7,University of North Carolina at Charlotte,UNCCHAR
+910,7,University of North Dakota,UND
+911,7,University of North Florida,UNFLA
+912,7,University of North Texas,UNT
+913,7,University of Northern Colorado,NCOL
+914,7,University of Northern Iowa,UNI
+915,7,University of Notre Dame,NOTRE
+916,7,University of Oklahoma,OK
+917,7,University of Oregon,ORE
+918,7,University of Pennsylvania – Penn,UPENN
+919,7,University of Pittsburgh,PITT
+920,7,University of Portland,PORT
+921,7,University of Rhode Island,URI
+922,7,University of Richmond,RICHMOND
+923,7,University of San Diego,SANDIEGO
+924,7,University of San Francisco,SANFRAN
+925,7,University of South Alabama,USOUTHALA
+926,7,University of South Carolina,USCAR
+927,7,University of South Carolina – Upstate,USCARUP
+928,7,University of South Dakota,USD
+929,7,University of South Florida,USF
+930,7,University of Southern California,USC
+931,7,University of Southern Indiana,SIND
+932,7,University of Southern Mississippi,USOUTHMISS
+933,7,University of St. Thomas – Minnesota,STTHOM
+934,7,University of Tennessee,TENN
+935,7,University of Tennessee – Chattanooga,UTENNCHAT
+936,7,University of Tennessee – Martin,UTENNMART
+937,7,University of Texas – Arlington,UTA
+938,7,University of Texas – Austin,UT
+939,7,University of Texas – El Paso,UTEP
+940,7,University of Texas – Rio Grande Valley,UTRGV
+941,7,University of Texas – San Antonio,UTSA
+942,7,University of the Incarnate Word,UIW
+943,7,University of the Pacific,UPAC
+944,7,University of Toledo,TOLEDO
+945,7,University of Tulsa,TULSA
+946,7,University of Utah,UTAH
+947,7,University of Vermont,UVT
+948,7,University of Virginia,UVA
+949,7,University of Washington,WASH
+950,7,University of Wisconsin,WISC
+951,7,University of Wisconsin – Green Bay,WISCGB
+952,7,University of Wisconsin – Milwaukee,WISCMW
+953,7,University of Wyoming,WY
+954,7,Utah State University,UTST
+955,7,Utah Tech University,UTAHTECH
+956,7,Utah Valley University,UTAHVAL
+957,7,Valparaiso University,VALP
+958,7,Vanderbilt University,VAND
+959,7,Villanova University,VILL
+960,7,Virginia Commonwealth University,VCU
+961,7,Virginia Tech,VTECH
+962,7,Wagner College,WAG
+963,7,Wake Forest University,WAKE
+964,7,Washington State University,WASHST
+965,7,Weber State University,WEBST
+966,7,West Virginia University,WVU
+967,7,Western Carolina University,WCU
+968,7,Western Illinois University,WIU
+969,7,Western Kentucky University,WKU
+970,7,Western Michigan University,WMU
+971,7,Wichita State University,WSU
+972,7,William & Mary,CWM
+973,7,Winthrop University,WINTHROP
+974,7,Wofford College,WOFFORD
+975,7,Wright State University,WRIGHT
+976,7,Xavier University,XAV
+977,7,Yale University,YALE
+978,7,Youngstown State University,YOUNG
