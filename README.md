@@ -6,7 +6,7 @@ Author: Jonathan Erdmann
 
 ## Project Goals
   1. Determine feasibility of betting strategy with simulated outcomes from real data
-  2. Establish business rules for long-term profitability
+  2. Establish semi-optimized business rules for long-term profitability
   3. Automate capital allocation and resourcing for long-term profitability
 
 ## Project Details
@@ -20,3 +20,4 @@ Author: Jonathan Erdmann
   - tibble
   - sqldf
   - ggplot2
+  - reader
