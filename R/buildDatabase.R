@@ -27,7 +27,7 @@ if (createSchema) {
     (
        id integer primary key
       ,league_id integer
-      ,date text
+      ,date date
       ,team_id integer
       ,win_probability real
       ,moneyline integer
@@ -51,8 +51,8 @@ if (createSchema) {
     (
        id integer primary key
       ,league_id integer
-      ,name text
-      ,team text
+      ,location text
+      ,team_name text
     )
   ")
   

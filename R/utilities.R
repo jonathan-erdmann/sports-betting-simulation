@@ -41,3 +41,31 @@ convert_moneyline_to_probability <- function(iData) {
   return(probability)
   
 }
+
+#-- Return a matrix of simulated wins and losses given probabilities
+get_simulation_outcomes <- function(iNumberSimulations, iVaryProbability, iData) {
+  
+  #-- Inputs:
+  # iNumberSimulations : Integer of number of simulations to return
+  # iVaryProbability   : Standard deviation of probability point estimates to use on each simulation
+  # iData : Data frame containing probability of occurrence as a variable named chance 
+  
+  #-- Output:
+  # simulation_outcomes : Number of Games matrix by iNumberSimulations of 0-Losses and 1-Wins
+  
+  #-- Generate simulation probabilities
+  #Repeat point estimates
+  simulation_probabilities <- matrix(rep(iData$chance, iNumberSimulations), nrow=length(iData$chance))
+  
+  #Add variability to point estimate if input
+  simulation_probabilities <- simulation_probabilities + rnorm(prod(dim(simulation_probabilities)), 0, iVaryProbability)
+  
+  #Simulated Outcomes
+  simulated_outcomes <- matrix(runif(prod(dim(simulation_probabilities))), nrow=length(iData$chance))
+  
+  #Simulated Wins
+  simulated_wins <- ifelse(simulation_probabilities > simulated_outcomes, 1, 0)
+  
+  return(simulated_wins)
+  
+}
