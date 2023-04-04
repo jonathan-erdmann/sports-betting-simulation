@@ -159,41 +159,57 @@ get_mlb_scores <- function() {
   webpage <- read_html(url)
   
   team_name <- webpage %>% html_elements("div") %>% html_elements(".truncate.db") %>% html_text()
+
+  if (length(team_name) == 0) {
+    
+    return(0)
+    
+  } else {
   
-  score <- webpage %>% html_elements("div") %>% html_elements(".pl2.baseball") %>% html_text()
-  score <- matrix(as.numeric(score), nrow = 3)[1,]
-  odd_wins  <- ifelse(score[c(TRUE,FALSE)] > score[c(FALSE,TRUE)], 1, 0)
-  even_wins <- 1 - odd_wins
-  
-  win <- rep(0, length(score))
-  win[c(TRUE,FALSE)] <- odd_wins
-  win[c(FALSE,TRUE)] <- even_wins
-  
-  win <- data.frame(team_name, win)
-  
-  return(win)
+    score <- webpage %>% html_elements("div") %>% html_elements(".pl2.baseball") %>% html_text()
+    score <- matrix(as.numeric(score), nrow = 3)[1,]
+    odd_wins  <- ifelse(score[c(TRUE,FALSE)] > score[c(FALSE,TRUE)], 1, 0)
+    even_wins <- 1 - odd_wins
+    
+    win <- rep(0, length(score))
+    win[c(TRUE,FALSE)] <- odd_wins
+    win[c(FALSE,TRUE)] <- even_wins
+    
+    win <- data.frame(team_name, win)
+    
+    return(win)
+
+  }
   
 }
 
-get_nba_scores <- function() {
+get_nba_scores <- function(iOffset = 1) {
   
-  date_string <- gsub("-","",Sys.Date() - 1)
+  date_string <- gsub("-","",Sys.Date() - iOffset)
   url <- paste0("https://www.espn.com/nba/scoreboard/_/date/", date_string)
   
   webpage <- read_html(url)
   
   team_name <- webpage %>% html_elements("div") %>% html_elements(".truncate.db") %>% html_text()
   
-  score <- as.numeric(webpage %>% html_elements("div") %>% html_elements(".fw-heavy") %>% html_text())
-  odd_wins  <- ifelse(score[c(TRUE,FALSE)] > score[c(FALSE,TRUE)], 1, 0)
-  even_wins <- 1 - odd_wins
+  if (length(team_name) == 0) {
+    
+    return(0)
+    
+  } else {
   
-  win <- rep(0, length(score))
-  win[c(TRUE,FALSE)] <- odd_wins
-  win[c(FALSE,TRUE)] <- even_wins
-  
-  win <- data.frame(team_name, win)
-  
-  return(win)
+    score <- as.numeric(webpage %>% html_elements("div") %>% html_elements(".fw-heavy") %>% html_text())
+    odd_wins  <- ifelse(score[c(TRUE,FALSE)] > score[c(FALSE,TRUE)], 1, 0)
+    even_wins <- 1 - odd_wins
+    
+    win <- rep(0, length(score))
+    win[c(TRUE,FALSE)] <- odd_wins
+    win[c(FALSE,TRUE)] <- even_wins
+    
+    win <- data.frame(team_name, win)
+    
+    return(win)
+    
+  }
   
 }

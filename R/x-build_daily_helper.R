@@ -25,9 +25,7 @@ mlb_bets <- data.frame(mlb_bet_input, kelly_bet) %>% filter(kelly_bet > 0)
 mlb_bets$odds <- convert_moneyline_to_odds(mlb_bets)
 
 bets <- rbind(nba_bets, mlb_bets)
-bets <- bets %>% 
-  mutate(kelly_bet_scaled = kelly_bet / sum(kelly_bet), kelly_bet_qtr = kelly_bet_scaled / 4) %>%
-  arrange(-kelly_bet)
+bets <- bets %>% mutate(kelly_bet_scaled = kelly_bet / sum(kelly_bet)) %>% arrange(-kelly_bet)
 
 #-- Store Available Bets into Database
 dbFileName <- "bettingSimulation.sqlite"

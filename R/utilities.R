@@ -43,7 +43,7 @@ convert_moneyline_to_probability <- function(iData) {
 }
 
 #-- Return a matrix of simulated wins and losses given probabilities
-get_simulation_outcomes <- function(iNumberSimulations, iVaryProbability, iData) {
+get_simulation_outcomes <- function(iNumberSimulations, iVaryProbability = 0.025, iData) {
   
   #-- Inputs:
   # iNumberSimulations : Integer of number of simulations to return
@@ -83,10 +83,10 @@ convert_moneyline_to_odds <- function(iData) {
 #-- Return Profit/Loss Distribution
 get_profit_loss <- function(iSimulation, iBets) {
   
-  profit_loss <- iSimulation * (1 + iBets$odds) * iBets$wagered - iBets$wagered
+  profit_loss <- colSums(iSimulation * (1 + iBets$odds) * iBets$wagered - iBets$wagered)
   
   profit_loss <- sort(profit_loss)
   
   return(profit_loss)
-  
+
 }
