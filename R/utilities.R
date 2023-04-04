@@ -55,13 +55,13 @@ get_simulation_outcomes <- function(iNumberSimulations, iVaryProbability, iData)
   
   #-- Generate simulation probabilities
   #Repeat point estimates
-  simulation_probabilities <- matrix(rep(iData$chance, iNumberSimulations), nrow=length(iData$chance))
+  simulation_probabilities <- matrix(rep(iData$win_probability, iNumberSimulations), nrow=length(iData$win_probability))
   
   #Add variability to point estimate if input
   simulation_probabilities <- simulation_probabilities + rnorm(prod(dim(simulation_probabilities)), 0, iVaryProbability)
   
   #Simulated Outcomes
-  simulated_outcomes <- matrix(runif(prod(dim(simulation_probabilities))), nrow=length(iData$chance))
+  simulated_outcomes <- matrix(runif(prod(dim(simulation_probabilities))), nrow=length(iData$win_probability))
   
   #Simulated Wins
   simulated_wins <- ifelse(simulation_probabilities > simulated_outcomes, 1, 0)
