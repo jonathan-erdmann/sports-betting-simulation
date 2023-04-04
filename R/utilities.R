@@ -69,3 +69,24 @@ get_simulation_outcomes <- function(iNumberSimulations, iVaryProbability, iData)
   return(simulated_wins)
   
 }
+
+#-- Convert moneyline into payout odds
+convert_moneyline_to_odds <- function(iData) {
+  
+  moneyLine <- iData$moneyline
+  odds <- ifelse(moneyLine > 0, moneyLine / 100, -100 / moneyLine)
+  
+  return(odds)
+  
+}
+
+#-- Return Profit/Loss Distribution
+get_profit_loss <- function(iSimulation, iBets) {
+  
+  profit_loss <- iSimulation * (1 + iBets$odds) * iBets$wagered - iBets$wagered
+  
+  profit_loss <- sort(profit_loss)
+  
+  return(profit_loss)
+  
+}

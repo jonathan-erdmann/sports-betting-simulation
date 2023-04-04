@@ -12,6 +12,7 @@ nba_bet_input  <- left_join(nba_games, nba_moneylines, by=join_by(league, team_n
 kelly_bet      <- get_kelly_bet(nba_bet_input)
 
 nba_bets <- data.frame(nba_bet_input, kelly_bet) %>% filter(kelly_bet > 0)
+nba_bets$odds <- convert_moneyline_to_odds(nba_bets)
 
 mlb_games        <- get_mlb_win_probabilities()
 mlb_moneylines   <- get_mlb_money_lines()
@@ -21,6 +22,7 @@ mlb_bet_input    <- left_join(mlb_games, mlb_moneylines, by=join_by(league, team
 kelly_bet        <- get_kelly_bet(mlb_bet_input)
 
 mlb_bets <- data.frame(mlb_bet_input, kelly_bet) %>% filter(kelly_bet > 0)
+mlb_bets$odds <- convert_moneyline_to_odds(mlb_bets)
 
 bets <- rbind(nba_bets, mlb_bets)
 bets <- bets %>% 
