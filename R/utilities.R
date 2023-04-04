@@ -4,13 +4,13 @@
 get_kelly_bet <- function(iData) {
   
   #-- iData data frame must include the following fields
-  #    chance: Probability of win
-  # moneyline: The money line associated with the team win
+  # win_probability : Probability of win
+  #       moneyline : The money line associated with the team win
   #
   # Input  : Probability of win and betting odds
   # Output : Kelly bet size
   
-  p  <- iData$chance
+  p  <- iData$win_probability
   ml <- iData$moneyline
   
   q <- 1 - p

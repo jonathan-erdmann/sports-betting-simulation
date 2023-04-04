@@ -16,15 +16,15 @@ get_nhl_win_probabilities <- function() {
   team_name <- webpage %>% html_nodes(".team-name") %>% html_text()
   
   #-- Get Win Probabilities
-  chance <- webpage %>% html_nodes(".num.win-prob") %>% html_text()
-  chance <- as.numeric(sub("%","",chance)) / 100
+  win_probability <- webpage %>% html_nodes(".num.win-prob") %>% html_text()
+  win_probability <- as.numeric(sub("%","",win_probability)) / 100
   
   #-- League ID
   league_id <- 4
-  league <- rep(league_id, length(chance))
+  league <- rep(league_id, length(win_probability))
   
   #-- Return Probabilities after removing duplicates
-  nhl_win_probabilities <- data.frame(league, team_name, chance) %>% distinct(league, team_name, chance, .keep_all = TRUE)
+  nhl_win_probabilities <- data.frame(league, team_name, win_probability) %>% distinct(league, team_name, win_probability, .keep_all = TRUE)
   
   return(nhl_win_probabilities)
   
@@ -52,16 +52,16 @@ get_mlb_win_probabilities <- function() {
   team_name <- team_name[1:number_of_teams]
   
   #-- Get Win Probabilities
-  chance <- webpage %>% html_element("tbody") %>% html_elements(".win-prob") %>% html_text()
-  chance <- chance[1:number_of_teams]
-  chance <- as.numeric(sub("%","",chance)) / 100
+  win_probability <- webpage %>% html_element("tbody") %>% html_elements(".win-prob") %>% html_text()
+  win_probability <- win_probability[1:number_of_teams]
+  win_probability <- as.numeric(sub("%","",win_probability)) / 100
   
   #-- League ID
   league_id <- 2
-  league <- rep(league_id, length(chance))
+  league <- rep(league_id, length(win_probability))
   
   #-- Return Probabilities
-  mlb_win_probabilities <- data.frame(league, team_name, chance)
+  mlb_win_probabilities <- data.frame(league, team_name, win_probability)
   
   return(mlb_win_probabilities)  
   
@@ -80,18 +80,18 @@ get_nba_win_probabilities <- function() {
   today <- today[1]
   
   #-- Fetch Win Percentages
-  chance <- today %>% html_nodes("tr.team") %>% html_elements(".chance") %>% html_text()
-  chance <- as.numeric(sub("%","",chance)) / 100
+  win_probability <- today %>% html_nodes("tr.team") %>% html_elements(".chance") %>% html_text()
+  win_probability <- as.numeric(sub("%","",win_probability)) / 100
   
   #-- Fetch Team Names
   team_name <- today %>% html_nodes("tr.team") %>% html_elements(".team") %>% html_text()
   
   #-- League ID
   league_id <- 1
-  league <- rep(league_id, length(chance))
+  league <- rep(league_id, length(win_probability))
   
   #-- Return Probabilities
-  nba_win_probabilities <- data.frame(league, team_name, chance)
+  nba_win_probabilities <- data.frame(league, team_name, win_probability)
   
   return(nba_win_probabilities)
   
@@ -148,5 +148,52 @@ get_mlb_money_lines <- function() {
   money_lines <- data.frame(league, team_name, moneyline)
   
   return(money_lines)
+  
+}
+
+get_mlb_scores <- function() {
+  
+  date_string <- gsub("-","",Sys.Date() - 1)
+  url <- paste0("https://www.espn.com/mlb/scoreboard/_/date/", date_string)
+  
+  webpage <- read_html(url)
+  
+  team_name <- webpage %>% html_elements("div") %>% html_elements(".truncate.db") %>% html_text()
+  
+  score <- webpage %>% html_elements("div") %>% html_elements(".pl2.baseball") %>% html_text()
+  score <- matrix(as.numeric(score), nrow = 3)[1,]
+  odd_wins  <- ifelse(score[c(TRUE,FALSE)] > score[c(FALSE,TRUE)], 1, 0)
+  even_wins <- 1 - odd_wins
+  
+  win <- rep(0, length(score))
+  win[c(TRUE,FALSE)] <- odd_wins
+  win[c(FALSE,TRUE)] <- even_wins
+  
+  win <- data.frame(team_name, win)
+  
+  return(win)
+  
+}
+
+get_nba_scores <- function() {
+  
+  date_string <- gsub("-","",Sys.Date() - 1)
+  url <- paste0("https://www.espn.com/nba/scoreboard/_/date/", date_string)
+  
+  webpage <- read_html(url)
+  
+  team_name <- webpage %>% html_elements("div") %>% html_elements(".truncate.db") %>% html_text()
+  
+  score <- as.numeric(webpage %>% html_elements("div") %>% html_elements(".fw-heavy") %>% html_text())
+  odd_wins  <- ifelse(score[c(TRUE,FALSE)] > score[c(FALSE,TRUE)], 1, 0)
+  even_wins <- 1 - odd_wins
+  
+  win <- rep(0, length(score))
+  win[c(TRUE,FALSE)] <- odd_wins
+  win[c(FALSE,TRUE)] <- even_wins
+  
+  win <- data.frame(team_name, win)
+  
+  return(win)
   
 }

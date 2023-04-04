@@ -40,19 +40,19 @@ mydb <- dbConnect(RSQLite::SQLite(), dbFile)
 mlb_db_data <- dbGetQuery(mydb, "select * from teams where league_id = 2;")
 
 #-- Attach Team ID to mlb_bet_input data frame
-mlb_bet_xfer <- left_join(mlb_bet_input, mlb_db_data, by=join_by(team_name)) %>% select(league_id, id, chance, moneyline)
+mlb_bet_xfer <- left_join(mlb_bet_input, mlb_db_data, by=join_by(team_name)) %>% select(league_id, id, win_probability, moneyline)
 date <- rep(Sys.Date(),dim(mlb_bet_xfer)[1])
-mlb_bet_xfer <- data.frame(mlb_bet_xfer, date) %>% select(league_id, date, id, chance, moneyline)
-mlb_bet_xfer <- mlb_bet_xfer %>% rename("win_probability" = "chance", "team_id" = "id")
+mlb_bet_xfer <- data.frame(mlb_bet_xfer, date) %>% select(league_id, date, id, win_probability, moneyline)
+mlb_bet_xfer <- mlb_bet_xfer %>% rename("team_id" = "id")
 
 #-- Get NBA Team Names
 nba_db_data <- dbGetQuery(mydb, "select * from teams where league_id = 1;")
 
 #-- Attach Team ID to mlb_bet_input data frame
-nba_bet_xfer <- left_join(nba_bet_input, nba_db_data, by=join_by(team_name)) %>% select(league_id, id, chance, moneyline)
+nba_bet_xfer <- left_join(nba_bet_input, nba_db_data, by=join_by(team_name)) %>% select(league_id, id, win_probability, moneyline)
 date <- rep(Sys.Date(),dim(nba_bet_xfer)[1])
-nba_bet_xfer <- data.frame(nba_bet_xfer, date) %>% select(league_id, date, id, chance, moneyline)
-nba_bet_xfer <- nba_bet_xfer %>% rename("win_probability" = "chance", "team_id" = "id")
+nba_bet_xfer <- data.frame(nba_bet_xfer, date) %>% select(league_id, date, id, win_probability, moneyline)
+nba_bet_xfer <- nba_bet_xfer %>% rename("team_id" = "id")
 
 #-- Write to DB
 dbWriteTable(mydb, "bets", mlb_bet_xfer, append=TRUE, row.names=FALSE)
