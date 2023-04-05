@@ -153,6 +153,7 @@ get_mlb_money_lines <- function() {
 
 get_mlb_scores <- function(iOffset = 1) {
   
+  game_date <- Sys.Date() - iOffset
   date_string <- gsub("-","",Sys.Date() - iOffset)
   url <- paste0("https://www.espn.com/mlb/scoreboard/_/date/", date_string)
   
@@ -183,7 +184,9 @@ get_mlb_scores <- function(iOffset = 1) {
     win[c(TRUE,FALSE)] <- odd_wins
     win[c(FALSE,TRUE)] <- even_wins
     
-    win <- data.frame(team_name, win)
+    game_date <- rep(game_date, length(score))
+    
+    win <- data.frame(game_date, team_name, win)
     
     return(win)
 
@@ -193,6 +196,7 @@ get_mlb_scores <- function(iOffset = 1) {
 
 get_nba_scores <- function(iOffset = 1) {
   
+  game_date <- Sys.Date() - iOffset
   date_string <- gsub("-","",Sys.Date() - iOffset)
   url <- paste0("https://www.espn.com/nba/scoreboard/_/date/", date_string)
   
@@ -222,7 +226,9 @@ get_nba_scores <- function(iOffset = 1) {
     win[c(TRUE,FALSE)] <- odd_wins
     win[c(FALSE,TRUE)] <- even_wins
     
-    win <- data.frame(team_name, win)
+    game_date <- rep(game_date, length(score))
+    
+    win <- data.frame(game_date, team_name, win)
     
     return(win)
     
@@ -232,6 +238,7 @@ get_nba_scores <- function(iOffset = 1) {
 
 get_nhl_scores <- function(iOffset = 1) {
   
+  game_date <- Sys.Date() - iOffset
   date_string <- gsub("-","",Sys.Date() - iOffset)
   url <- paste0("https://www.espn.com/nhl/scoreboard/_/date/", date_string)
   
@@ -261,7 +268,9 @@ get_nhl_scores <- function(iOffset = 1) {
     win[c(TRUE,FALSE)] <- odd_wins
     win[c(FALSE,TRUE)] <- even_wins
     
-    win <- data.frame(team_name, win)
+    game_date <- rep(game_date, length(score))
+    
+    win <- data.frame(game_date, team_name, win)
     
     return(win)
     
