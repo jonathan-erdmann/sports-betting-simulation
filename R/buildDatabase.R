@@ -161,6 +161,17 @@ if (createSchema) {
     )
   ")
   
+  
+  # Create Games Calendar for Simulation
+  dbExecute(mydb, "
+    CREATE TABLE IF NOT EXISTS games_calendar
+    (
+       league_id integer
+      ,day_of_year integer
+      ,number_of_games integer
+    )
+  ")
+  
 }
 
 if (populateData) {
@@ -179,6 +190,12 @@ if (populateData) {
   csvFile  <- paste0(filePath,"/" ,fileName)
   xfer_df  <- fread(csvFile)
   #dbWriteTable(mydb, "teams", xfer_df, overwite = TRUE, append = TRUE)
+  
+  #-- Load Game Calendar
+  fileName <- "game_calendar.csv"
+  csvFile  <- paste0(filePath,"/" ,fileName)
+  xfer_df  <- fread(csvFile)
+  #dbWriteTable(mydb, "games_calendar", xfer_df, overwite = TRUE, append = TRUE)
   
 }
 
