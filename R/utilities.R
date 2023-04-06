@@ -83,7 +83,11 @@ convert_moneyline_to_odds <- function(iData) {
 #-- Return Profit/Loss Distribution
 get_profit_loss <- function(iSimulation, iBets) {
   
-  profit_loss <- colSums(iSimulation * (1 + iBets$odds) * iBets$wagered - iBets$wagered)
+  profit_loss <- ifelse(
+    dim(iSimulation)[2] > 1
+    , colSums(iSimulation * (1 + iBets$odds) * iBets$wagered - iBets$wagered)
+    , iSimulation * (1 + iBets$odds) * iBets$wagered - iBets$wagered
+  )
   
   profit_loss <- sort(profit_loss)
   

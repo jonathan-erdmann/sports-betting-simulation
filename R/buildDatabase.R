@@ -91,7 +91,7 @@ if (createSchema) {
     CREATE TABLE IF NOT EXISTS simulation_config
     (
        id integer primary key
-      ,risk_configuraiton integer
+      ,risk_configuration integer
       ,allocation_id integer
       ,playable_leagues text
       ,simulation_days integer
@@ -156,7 +156,6 @@ if (createSchema) {
     CREATE TABLE IF NOT EXISTS capital_allocation_method
     (
        id integer
-      ,number_of_runs integer
       ,method text
     )
   ")
@@ -183,19 +182,19 @@ if (populateData) {
   fileName <- "leagues.csv"
   csvFile  <- paste0(filePath,"/" ,fileName)
   xfer_df  <- fread(csvFile)
-  #dbWriteTable(mydb, "leagues", xfer_df, overwite = TRUE, append = TRUE)
+  #dbWriteTable(mydb, "leagues", xfer_df, overwrite = FALSE, append = TRUE)
   
   #-- Load Teams
   fileName <- "teams.csv"
   csvFile  <- paste0(filePath,"/" ,fileName)
   xfer_df  <- fread(csvFile)
-  #dbWriteTable(mydb, "teams", xfer_df, overwite = TRUE, append = TRUE)
+  #dbWriteTable(mydb, "teams", xfer_df, overwrite = FALSE, append = TRUE)
   
   #-- Load Game Calendar
   fileName <- "game_calendar.csv"
   csvFile  <- paste0(filePath,"/" ,fileName)
   xfer_df  <- fread(csvFile)
-  #dbWriteTable(mydb, "games_calendar", xfer_df, overwite = TRUE, append = TRUE)
+  #dbWriteTable(mydb, "games_calendar", xfer_df, overwrite = FALSE, append = TRUE)
   
 }
 
