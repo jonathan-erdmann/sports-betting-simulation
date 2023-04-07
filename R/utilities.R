@@ -174,7 +174,7 @@ get_mlb_daily_bets <- function(iDB) {
 store_nba_games_to_db <- function(iDB) {
 
   #-- Get NBA Data
-  bet_xfer <- get_nba_daily_bets(iDB) %>% select("game_id","league_id","date","team_id","win_probability","")
+  bet_xfer <- get_nba_daily_bets(iDB)
   
   #-- Write to Database
   dbWriteTable(iDB, "bets", bet_xfer, append=TRUE, row.names=FALSE)
@@ -185,22 +185,23 @@ store_nba_games_to_db <- function(iDB) {
 #-- Persist Daily MLB Bets to Database
 store_mlb_games_to_db <- function(iDB) {
   
-  #-- Scrape Web Data
-  games      <- get_mlb_win_probabilities()
-  moneylines <- get_mlb_money_lines()
-  bet_input  <- left_join(games, moneylines, by=join_by(league, team_name))
-  
-  #-- Get NBA Team Names
-  mlb_db_data <- dbGetQuery(iDB, "select * from teams where league_id = 2;")
-  
-  #-- Prepare transfer data frame
-  bet_xfer <- left_join(bet_input, mlb_db_data, by=join_by(team_name)) %>%
-    select(league_id, id, win_probability, moneyline)
-  bet_xfer$date <- Sys.Date()
-  bet_xfer <- attach_game_id(bet_xfer) %>% select(game_id, league_id, date, id, win_probability, moneyline)
-  bet_xfer <- bet_xfer %>% rename("team_id" = "id")
+  #-- Get MLB Data
+  bet_xfer <- get_mlb_daily_bets(iDB)
   
   #-- Write to Database
   dbWriteTable(iDB, "bets", bet_xfer, append=TRUE, row.names=FALSE)
+  
+}
+
+#-- Read Potential bets from database for simulating a betting day
+get_simulated_bets <- function(iDB, iLeague, iDay) {
+  
+  sql <- paste("select number_of_games from games_calendar where league_id =", iLeague,  "and day_of_year = ", iDay)
+  
+  number_of_games <- as.numeric(dbGetQuery(iDB, sql))
+  
+  #-- Sample from bets table and return
+  
+  return(number_of_games)
   
 }
