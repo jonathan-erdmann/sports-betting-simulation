@@ -94,3 +94,113 @@ get_profit_loss <- function(iSimulation, iBets) {
   return(profit_loss)
 
 }
+
+#-- Attach Game ID to Bet Input Data Frame
+attach_game_id <- function(iBets) {
+  
+  game_id <- 1:length(iBets$league)
+  game_id <- paste0(ceiling(game_id / 2), Sys.Date())
+  game_id <- sapply(game_id, digest)
+  
+  iBets$game_id <- game_id
+  
+  return(iBets)
+  
+}
+
+#-- Get Basic NBA Daily Betting Information
+get_nba_daily_bets <- function(iDB) {
+  
+  #-- Needs established DB connection
+  
+  #-- Scrape Web Data
+  games      <- get_nba_win_probabilities()
+  moneylines <- get_nba_money_lines()
+  bet_input  <- left_join(games, moneylines, by=join_by(league, team_name))
+  
+  #-- Get NBA Team Names
+  nba_db_data <- dbGetQuery(iDB, "select * from teams where league_id = 1;")
+  
+  bet_input <- attach_game_id(left_join(bet_input, nba_db_data, by=join_by(team_name))) %>%
+    select(-c("league")) %>%
+    rename("team_id"="id")
+  
+  bet_input$odds <- convert_moneyline_to_odds(bet_input)
+  bet_input$kelly_bet <- get_kelly_bet(bet_input)
+  bet_input$date <- Sys.Date()
+  
+  bet_input <- bet_input %>% 
+    relocate(game_id, league_id, team_id, date, location, team_name, win_probability, moneyline, odds, kelly_bet)
+  
+  return(bet_input)
+  
+}
+
+#-- Get Basic MLB Daily Betting Information
+get_mlb_daily_bets <- function(iDB) {
+  
+  #-- Needs established DB connection
+  
+  #-- Scrape Web Data
+  games      <- get_mlb_win_probabilities()
+  moneylines <- get_mlb_money_lines()
+  
+  #-- Reduce to correct dimensions
+  number_mlb_games <- dim(games)[1]
+  moneylines <- moneylines[1:number_mlb_games,]
+
+  #-- Join Probabilities and Payouts
+  bet_input  <- left_join(games, moneylines, by=join_by(league, team_name))
+  
+  #-- Get MLB Team Names
+  mlb_db_data <- dbGetQuery(iDB, "select * from teams where league_id = 2;")
+  
+  bet_input <- attach_game_id(left_join(bet_input, mlb_db_data, by=join_by(team_name))) %>%
+    select(-c("league")) %>%
+    rename("team_id"="id")
+  
+  bet_input$odds <- convert_moneyline_to_odds(bet_input)
+  bet_input$kelly_bet <- get_kelly_bet(bet_input)
+  bet_input$date <- Sys.Date()
+  
+  bet_input <- bet_input %>% 
+    relocate(game_id, league_id, team_id, date, location, team_name, win_probability, moneyline, odds, kelly_bet)
+  
+  return(bet_input)
+  
+}
+
+#-- Persist Daily NBA Bets to Database
+store_nba_games_to_db <- function(iDB) {
+
+  #-- Get NBA Data
+  bet_xfer <- get_nba_daily_bets(iDB) %>% select("game_id","league_id","date","team_id","win_probability","")
+  
+  #-- Write to Database
+  dbWriteTable(iDB, "bets", bet_xfer, append=TRUE, row.names=FALSE)
+  
+}
+
+
+#-- Persist Daily MLB Bets to Database
+store_mlb_games_to_db <- function(iDB) {
+  
+  #-- Scrape Web Data
+  games      <- get_mlb_win_probabilities()
+  moneylines <- get_mlb_money_lines()
+  bet_input  <- left_join(games, moneylines, by=join_by(league, team_name))
+  
+  #-- Get NBA Team Names
+  mlb_db_data <- dbGetQuery(iDB, "select * from teams where league_id = 2;")
+  
+  #-- Prepare transfer data frame
+  bet_xfer <- left_join(bet_input, mlb_db_data, by=join_by(team_name)) %>%
+    select(league_id, id, win_probability, moneyline)
+  bet_xfer$date <- Sys.Date()
+  bet_xfer <- attach_game_id(bet_xfer) %>% select(game_id, league_id, date, id, win_probability, moneyline)
+  bet_xfer <- bet_xfer %>% rename("team_id" = "id")
+  
+  #-- Write to Database
+  dbWriteTable(iDB, "bets", bet_xfer, append=TRUE, row.names=FALSE)
+  
+}

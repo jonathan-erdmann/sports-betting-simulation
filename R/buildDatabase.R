@@ -26,6 +26,7 @@ if (createSchema) {
     CREATE TABLE IF NOT EXISTS bets
     (
        id integer primary key
+      ,game_id text
       ,league_id integer
       ,date date
       ,team_id integer

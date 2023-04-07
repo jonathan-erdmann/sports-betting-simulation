@@ -55,7 +55,7 @@ nba_bet_xfer <- data.frame(nba_bet_xfer, date) %>% select(league_id, date, id, w
 nba_bet_xfer <- nba_bet_xfer %>% rename("team_id" = "id")
 
 #-- Write to DB
-dbWriteTable(mydb, "bets", mlb_bet_xfer, append=TRUE, row.names=FALSE)
-dbWriteTable(mydb, "bets", nba_bet_xfer, append=TRUE, row.names=FALSE)
+#dbWriteTable(mydb, "bets", mlb_bet_xfer, append=TRUE, row.names=FALSE)
+#dbWriteTable(mydb, "bets", nba_bet_xfer, append=TRUE, row.names=FALSE)
 
 dbDisconnect(mydb)
