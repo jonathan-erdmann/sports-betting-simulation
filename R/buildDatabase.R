@@ -30,8 +30,12 @@ if (createSchema) {
       ,league_id integer
       ,date date
       ,team_id integer
+      ,location text
+      ,team_name text
       ,win_probability real
       ,moneyline integer
+      ,odds real
+      ,kelly_bet real
     )
   ")
   
