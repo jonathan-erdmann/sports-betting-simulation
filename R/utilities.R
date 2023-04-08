@@ -267,3 +267,27 @@ get_simulated_bets <- function(iDB, iLeague, iDay) {
   return(number_of_games)
   
 }
+
+#-- Determine Kelly Bet of a simulated profit loss distribution
+get_kelly_bet_from_distribution <- function(iDistribution) {
+  
+  #-- iDistribution is single column vector of profit and loss
+  pnl <- data.frame(table(iDistribution))
+  pnl[,1] <- as.numeric(as.character(pnl[,1]))
+  
+  number_of_wins <- sum(pnl[pnl[,1] > 0, 2])
+  number_of_sims <- sum(pnl$Freq)
+  
+  win_probability <- number_of_wins / number_of_sims
+  
+  wins <- pnl[pnl[,1] > 0,]
+  
+  wins$conditional_probability <- wins$Freq / number_of_wins
+  
+  win_odds <- 1 + sum(wins[,1] * wins$conditional_probability) / win_probability
+  
+  kelly_bet_from_distribution <- (win_odds * win_probability - (1 - win_probability) ) / win_odds
+  
+  return(kelly_bet_from_distribution)
+  
+}
