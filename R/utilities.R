@@ -83,13 +83,21 @@ convert_moneyline_to_odds <- function(iData) {
 #-- Return Profit/Loss Distribution
 get_profit_loss <- function(iSimulation, iBets) {
   
-  profit_loss <- ifelse(
-    dim(iSimulation)[2] > 1
-    , colSums(iSimulation * (1 + iBets$odds) * iBets$wagered - iBets$wagered)
-    , iSimulation * (1 + iBets$odds) * iBets$wagered - iBets$wagered
-  )
+  #profit_loss <- ifelse(
+  #  dim(iSimulation)[2] > 1
+  #  , colSums(iSimulation * (1 + iBets$odds) * iBets$wagered - iBets$wagered)
+  #  , iSimulation * (1 + iBets$odds) * iBets$wagered - iBets$wagered
+  #)
   
-  profit_loss <- sort(profit_loss)
+  if (dim(iSimulation)[2] > 1) {
+    
+    profit_loss <- sort(colSums(iSimulation * (1 + iBets$odds) * iBets$wagered - iBets$wagered))
+    
+  } else {
+    
+    profit_loss <- iSimulation * (1 + iBets$odds) * iBets$wagered - iBets$wagered
+    
+  }
   
   return(profit_loss)
 
@@ -170,6 +178,42 @@ get_mlb_daily_bets <- function(iDB) {
   
 }
 
+
+#-- Get Basic NHL Daily Betting Information
+get_nhl_daily_bets <- function(iDB) {
+  
+  #-- Needs established DB connection
+  
+  #-- Scrape Web Data
+  games      <- get_nhl_win_probabilities()
+  moneylines <- get_nhl_money_lines()
+  
+  #-- Reduce to correct dimensions
+  nhl_min_dimension <- min(dim(moneylines)[1],dim(games)[1])
+  games <- games[1:nhl_min_dimension,]
+  moneylines <- moneylines[1:nhl_min_dimension,]
+  
+  #-- Join Probabilities and Payouts
+  bet_input  <- left_join(games, moneylines, by=join_by(league, team_name))
+  
+  #-- Get MLB Team Names
+  nhl_db_data <- dbGetQuery(iDB, "select * from teams where league_id = 4;")
+  
+  bet_input <- attach_game_id(left_join(bet_input, nhl_db_data, by=join_by(team_name))) %>%
+    select(-c("league")) %>%
+    rename("team_id"="id")
+  
+  bet_input$odds <- convert_moneyline_to_odds(bet_input)
+  bet_input$kelly_bet <- get_kelly_bet(bet_input)
+  bet_input$date <- Sys.Date()
+  
+  bet_input <- bet_input %>% 
+    relocate(game_id, league_id, team_id, date, location, team_name, win_probability, moneyline, odds, kelly_bet)
+  
+  return(bet_input)
+  
+}
+
 #-- Persist Daily NBA Bets to Database
 store_nba_games_to_db <- function(iDB) {
 
@@ -178,6 +222,8 @@ store_nba_games_to_db <- function(iDB) {
   
   #-- Write to Database
   dbWriteTable(iDB, "bets", bet_xfer, append=TRUE, row.names=FALSE)
+  
+  return(bet_xfer)
   
 }
 
@@ -190,6 +236,22 @@ store_mlb_games_to_db <- function(iDB) {
   
   #-- Write to Database
   dbWriteTable(iDB, "bets", bet_xfer, append=TRUE, row.names=FALSE)
+  
+  return(bet_xfer)
+  
+}
+
+
+#-- Persist Daily NHL Bets to Database
+store_nhl_games_to_db <- function(iDB) {
+  
+  #-- Get MLB Data
+  bet_xfer <- get_nhl_daily_bets(iDB)
+  
+  #-- Write to Database
+  dbWriteTable(iDB, "bets", bet_xfer, append=TRUE, row.names=FALSE)
+  
+  return(bet_xfer)
   
 }
 

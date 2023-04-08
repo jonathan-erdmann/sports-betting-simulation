@@ -14,6 +14,7 @@ get_nhl_win_probabilities <- function() {
   
   #-- Get Team Names
   team_name <- webpage %>% html_nodes(".team-name") %>% html_text()
+  team_name <- trimws(team_name)
   
   #-- Get Win Probabilities
   win_probability <- webpage %>% html_nodes(".num.win-prob") %>% html_text()
@@ -23,8 +24,9 @@ get_nhl_win_probabilities <- function() {
   league_id <- 4
   league <- rep(league_id, length(win_probability))
   
-  #-- Return Probabilities after removing duplicates
-  nhl_win_probabilities <- data.frame(league, team_name, win_probability) %>% distinct(league, team_name, win_probability, .keep_all = TRUE)
+  #-- Return Probabilities after removing first three games (highest quality, most important, best overall and duplicates
+  nhl_win_probabilities <- data.frame(league, team_name, win_probability) 
+  nhl_win_probabilities <- nhl_win_probabilities[-seq(1:6),] %>% distinct(league, team_name, win_probability, .keep_all = TRUE)
   
   return(nhl_win_probabilities)
   
@@ -142,6 +144,34 @@ get_mlb_money_lines <- function() {
   
   #-- League ID
   league_id <- 2
+  league <- rep(league_id, length(moneyline))
+  
+  #-- Return Probabilities
+  money_lines <- data.frame(league, team_name, moneyline)
+  
+  return(money_lines)
+  
+}
+
+#-- Get NHL moneylines
+get_nhl_money_lines <- function() {
+  
+  url <- "https://sportsbook.draftkings.com/leagues/hockey/nhl"
+  #"https://sportsbook.draftkings.com/leagues/basketball/nba"
+  #https://sportsbook.draftkings.com/leagues/hockey/nhl
+  #https://sportsbook.draftkings.com/leagues/football/nfl
+  
+  webpage <- read_html(url)
+  
+  #-- Fetch Team Names and remove city code
+  team_name <- webpage %>% html_nodes(".event-cell__name-text") %>% html_text()
+  team_name <- sub(".*? ","", team_name)
+  
+  #-- Fetch Money Lines
+  moneyline <- as.numeric(sub("−","-",webpage %>% html_nodes(".american.no-margin") %>% html_text()))
+  
+  #-- League ID
+  league_id <- 4
   league <- rep(league_id, length(moneyline))
   
   #-- Return Probabilities
