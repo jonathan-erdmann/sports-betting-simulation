@@ -130,7 +130,6 @@ get_nba_daily_bets <- function(iDB) {
   nba_db_data <- dbGetQuery(iDB, "select * from teams where league_id = 1;")
   
   bet_input <- attach_game_id(left_join(bet_input, nba_db_data, by=join_by(team_name))) %>%
-    select(-c("league")) %>%
     rename("team_id"="id")
   
   bet_input$odds <- convert_moneyline_to_odds(bet_input)
@@ -164,7 +163,6 @@ get_mlb_daily_bets <- function(iDB) {
   mlb_db_data <- dbGetQuery(iDB, "select * from teams where league_id = 2;")
   
   bet_input <- attach_game_id(left_join(bet_input, mlb_db_data, by=join_by(team_name))) %>%
-    select(-c("league")) %>%
     rename("team_id"="id")
   
   bet_input$odds <- convert_moneyline_to_odds(bet_input)
@@ -177,7 +175,6 @@ get_mlb_daily_bets <- function(iDB) {
   return(bet_input)
   
 }
-
 
 #-- Get Basic NHL Daily Betting Information
 get_nhl_daily_bets <- function(iDB) {
@@ -200,7 +197,6 @@ get_nhl_daily_bets <- function(iDB) {
   nhl_db_data <- dbGetQuery(iDB, "select * from teams where league_id = 4;")
   
   bet_input <- attach_game_id(left_join(bet_input, nhl_db_data, by=join_by(team_name))) %>%
-    select(-c("league")) %>%
     rename("team_id"="id")
   
   bet_input$odds <- convert_moneyline_to_odds(bet_input)
