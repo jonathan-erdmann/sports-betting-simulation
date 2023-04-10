@@ -22,11 +22,11 @@ get_nhl_win_probabilities <- function() {
   
   #-- League ID
   league_id <- 4
-  league <- rep(league_id, length(win_probability))
+  league_id <- rep(league_id, length(win_probability))
   
   #-- Return Probabilities after removing first three games (highest quality, most important, best overall and duplicates
-  nhl_win_probabilities <- data.frame(league, team_name, win_probability) 
-  nhl_win_probabilities <- nhl_win_probabilities[-seq(1:6),] %>% distinct(league, team_name, win_probability, .keep_all = TRUE)
+  nhl_win_probabilities <- data.frame(league_id, team_name, win_probability) 
+  nhl_win_probabilities <- nhl_win_probabilities[-seq(1:6),] %>% distinct(league_id, team_name, win_probability, .keep_all = TRUE)
   
   return(nhl_win_probabilities)
   
@@ -60,10 +60,10 @@ get_mlb_win_probabilities <- function() {
   
   #-- League ID
   league_id <- 2
-  league <- rep(league_id, length(win_probability))
+  league_id <- rep(league_id, length(win_probability))
   
   #-- Return Probabilities
-  mlb_win_probabilities <- data.frame(league, team_name, win_probability)
+  mlb_win_probabilities <- data.frame(league_id, team_name, win_probability)
   
   return(mlb_win_probabilities)  
   
@@ -90,10 +90,10 @@ get_nba_win_probabilities <- function() {
   
   #-- League ID
   league_id <- 1
-  league <- rep(league_id, length(win_probability))
+  league_id <- rep(league_id, length(win_probability))
   
   #-- Return Probabilities
-  nba_win_probabilities <- data.frame(league, team_name, win_probability)
+  nba_win_probabilities <- data.frame(league_id, team_name, win_probability)
   
   return(nba_win_probabilities)
   
@@ -117,10 +117,10 @@ get_nba_money_lines <- function() {
   
   #-- League ID
   league_id <- 1
-  league <- rep(league_id, length(moneyline))
+  league_id <- rep(league_id, length(moneyline))
   
   #-- Return Probabilities
-  money_lines <- data.frame(league, team_name, moneyline)
+  money_lines <- data.frame(league_id, team_name, moneyline)
   
   return(money_lines)
   
@@ -144,10 +144,10 @@ get_mlb_money_lines <- function() {
   
   #-- League ID
   league_id <- 2
-  league <- rep(league_id, length(moneyline))
+  league_id <- rep(league_id, length(moneyline))
   
   #-- Return Probabilities
-  money_lines <- data.frame(league, team_name, moneyline)
+  money_lines <- data.frame(league_id, team_name, moneyline)
   
   return(money_lines)
   
@@ -172,10 +172,10 @@ get_nhl_money_lines <- function() {
   
   #-- League ID
   league_id <- 4
-  league <- rep(league_id, length(moneyline))
+  league_id <- rep(league_id, length(moneyline))
   
   #-- Return Probabilities
-  money_lines <- data.frame(league, team_name, moneyline)
+  money_lines <- data.frame(league_id, team_name, moneyline)
   
   return(money_lines)
   

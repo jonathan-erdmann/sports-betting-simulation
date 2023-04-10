@@ -124,12 +124,12 @@ get_nba_daily_bets <- function(iDB) {
   #-- Scrape Web Data
   games      <- get_nba_win_probabilities()
   moneylines <- get_nba_money_lines()
-  bet_input  <- left_join(games, moneylines, by=join_by(league, team_name))
+  bet_input  <- left_join(games, moneylines, by=join_by(league_id, team_name))
   
   #-- Get NBA Team Names
   nba_db_data <- dbGetQuery(iDB, "select * from teams where league_id = 1;")
   
-  bet_input <- attach_game_id(left_join(bet_input, nba_db_data, by=join_by(team_name))) %>%
+  bet_input <- attach_game_id(left_join(bet_input, nba_db_data, by=join_by(league_id, team_name))) %>%
     rename("team_id"="id")
   
   bet_input$odds <- convert_moneyline_to_odds(bet_input)
@@ -157,12 +157,12 @@ get_mlb_daily_bets <- function(iDB) {
   moneylines <- moneylines[1:number_mlb_games,]
 
   #-- Join Probabilities and Payouts
-  bet_input  <- left_join(games, moneylines, by=join_by(league, team_name))
+  bet_input  <- left_join(games, moneylines, by=join_by(league_id, team_name))
   
   #-- Get MLB Team Names
   mlb_db_data <- dbGetQuery(iDB, "select * from teams where league_id = 2;")
   
-  bet_input <- attach_game_id(left_join(bet_input, mlb_db_data, by=join_by(team_name))) %>%
+  bet_input <- attach_game_id(left_join(bet_input, mlb_db_data, by=join_by(league_id, team_name))) %>%
     rename("team_id"="id")
   
   bet_input$odds <- convert_moneyline_to_odds(bet_input)
@@ -191,12 +191,12 @@ get_nhl_daily_bets <- function(iDB) {
   moneylines <- moneylines[1:nhl_min_dimension,]
   
   #-- Join Probabilities and Payouts
-  bet_input  <- left_join(games, moneylines, by=join_by(league, team_name))
+  bet_input  <- left_join(games, moneylines, by=join_by(league_id, team_name))
   
   #-- Get MLB Team Names
   nhl_db_data <- dbGetQuery(iDB, "select * from teams where league_id = 4;")
   
-  bet_input <- attach_game_id(left_join(bet_input, nhl_db_data, by=join_by(team_name))) %>%
+  bet_input <- attach_game_id(left_join(bet_input, nhl_db_data, by=join_by(league_id, team_name))) %>%
     rename("team_id"="id")
   
   bet_input$odds <- convert_moneyline_to_odds(bet_input)
