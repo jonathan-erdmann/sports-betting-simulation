@@ -41,3 +41,6 @@ vignettes/*.pdf
 # Data Files
 data/*.csv
 data/*.txt
+
+# Temp HTML Files
+*temp.html

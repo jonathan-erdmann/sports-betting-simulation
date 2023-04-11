@@ -187,7 +187,8 @@ get_mlb_scores <- function(iOffset = 1) {
   date_string <- gsub("-","",Sys.Date() - iOffset)
   url <- paste0("https://www.espn.com/mlb/scoreboard/_/date/", date_string)
   
-  webpage <- read_html(url)
+  webpage <- download.file(url, destfile = "temp.html", quiet=TRUE)
+  webpage <- read_html("temp.html")
   
   team_name <- webpage %>% html_elements("div") %>% html_elements(".truncate.db") %>% html_text()
 

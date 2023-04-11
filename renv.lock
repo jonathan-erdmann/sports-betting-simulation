@@ -199,6 +199,17 @@
       ],
       "Hash": "b4c06e554f33344e044ccd7fdca750a9"
     },
+    "digest": {
+      "Package": "digest",
+      "Version": "0.6.31",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "utils"
+      ],
+      "Hash": "8b708f296afd9ae69f450f9640be8990"
+    },
     "dplyr": {
       "Package": "dplyr",
       "Version": "1.1.0",
@@ -283,6 +294,24 @@
         "withr"
       ],
       "Hash": "d494daf77c4aa7f084dbbe6ca5dcaca7"
+    },
+    "ggthemes": {
+      "Package": "ggthemes",
+      "Version": "4.2.4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "ggplot2",
+        "graphics",
+        "grid",
+        "methods",
+        "purrr",
+        "scales",
+        "stringr",
+        "tibble"
+      ],
+      "Hash": "617fb2c300f68e8b1ba21043fba88fd7"
     },
     "glue": {
       "Package": "glue",
