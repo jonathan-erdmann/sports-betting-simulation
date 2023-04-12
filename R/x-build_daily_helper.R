@@ -15,6 +15,9 @@ dbFile <- paste0(dbPath,"/" ,dbFileName)
 #Connect to database
 mydb <- dbConnect(RSQLite::SQLite(), dbFile)
 
+#-- Test
+get_mlb_daily_bets(mydb)
+
 #-- Store all betting information
 #mlb_games <- store_mlb_games_to_db(mydb)
 #nba_games <- store_nba_games_to_db(mydb)
@@ -28,13 +31,13 @@ bets  <- dbGetQuery(mydb, query) %>% arrange(-kelly_bet)
 #-- Develop PNL distribution based on scaled wager
 bets$wagered    <- bets$kelly_bet / sum(bets$kelly_bet)
 sim_results     <- get_simulation_outcomes(1000, 0.025, bets)
-sim_pnl         <- get_profit_loss(sim_results, bets)
+sim_pnl         <- get_simulation_profit_loss(sim_results, bets)
 total_kelly_bet <- get_kelly_bet_from_distribution(sim_pnl)
 
 #-- Wager 1/2 Size Kelly Bet
 bet_factor <- 0.5
 bets$wagered <- bet_factor * total_kelly_bet * bets$wagered
-sim_pnl <- get_profit_loss(sim_results, bets)
+sim_pnl <- get_simulation_profit_loss(sim_results, bets)
 
 pnl_plot_data <- data.frame(table(round(sim_pnl,3))) %>% mutate(prob=Freq/sum(Freq), cum_prob=cumsum(prob)) %>% rename("profit"="Var1")
 pnl_plot_data$profit <- as.numeric(as.character(pnl_plot_data$profit))

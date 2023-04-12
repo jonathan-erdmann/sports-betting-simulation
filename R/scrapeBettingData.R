@@ -110,7 +110,7 @@ get_nba_money_lines <- function() {
   
   #-- Fetch Team Names and remove city code
   team_name <- webpage %>% html_nodes(".event-cell__name-text") %>% html_text()
-  team_name <- sub(".*? ","", team_name)
+  team_name <- trimws(sub(".*? ","", team_name))
   
   #-- Fetch Money Lines
   moneyline <- as.numeric(sub("−","-",webpage %>% html_nodes(".american.no-margin") %>% html_text()))

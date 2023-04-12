@@ -48,7 +48,7 @@ get_simulation_outcomes <- function(iNumberSimulations, iVaryProbability = 0.025
   #-- Inputs:
   # iNumberSimulations : Integer of number of simulations to return
   # iVaryProbability   : Standard deviation of probability point estimates to use on each simulation
-  # iData : Data frame containing probability of occurrence as a variable named chance 
+  # iData : Data frame containing probability of occurrence as a variable named win_probability 
   
   #-- Output:
   # simulation_outcomes : Number of Games matrix by iNumberSimulations of 0-Losses and 1-Wins
@@ -306,5 +306,30 @@ get_profit_loss <- function(iBets) {
   profit_loss <- sum(get_bet_returns(iBets) - iBets$wagered)
   
   return(profit_loss)
+  
+}
+
+#-- Get Return on Wager from Daily Bets
+get_return_on_wager <- function(iBets) {
+  
+  #Requires iBets to include following fields: wagered, odds, win
+  return_on_wager <- get_profit_loss(iBets) / sum(bets$wagered)
+  
+  return(return_on_wager)
+  
+}
+
+#-- Get Estimated Return Percentile of Expected
+get_estimated_return_percentile <- function(iBets) {
+  
+  sim_results <- get_simulation_outcomes(1E5, 0.025, iBets)
+  sim_profit_loss <- get_simulation_profit_loss(sim_results, iBets)
+  estimated_percentile_values <- unname(quantile(sim_profit_loss, seq(0,1,0.001)))
+  percentiles <- seq(0,1,0.001)
+  profit_loss <- get_profit_loss(iBets)
+  
+  estimated_return_percentile <- min(percentiles[estimated_percentile_values > get_profit_loss(iBets)])
+  
+  return(estimated_return_percentile)
   
 }
