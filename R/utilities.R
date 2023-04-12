@@ -81,7 +81,7 @@ convert_moneyline_to_odds <- function(iData) {
 }
 
 #-- Return Profit/Loss Distribution
-get_profit_loss <- function(iSimulation, iBets) {
+get_simulation_profit_loss <- function(iSimulation, iBets) {
   
   #profit_loss <- ifelse(
   #  dim(iSimulation)[2] > 1
@@ -285,5 +285,26 @@ get_kelly_bet_from_distribution <- function(iDistribution) {
   kelly_bet_from_distribution <- (win_odds * win_probability - (1 - win_probability) ) / win_odds
   
   return(kelly_bet_from_distribution)
+  
+}
+
+#-- Get Returns from Daily Bets
+get_bet_returns <- function(iBets) {
+  
+  #Requires iBets to include following fields: wagered, odds, win
+  
+  returned <- iBets$wagered * (1 + iBets$odds) * iBets$win
+  
+  return(returned)
+  
+}
+
+#-- Get Profit/Loss from Daily Bets
+get_profit_loss <- function(iBets) {
+  
+  #Requires iBets to include following fields: wagered, odds, win
+  profit_loss <- sum(get_bet_returns(iBets) - iBets$wagered)
+  
+  return(profit_loss)
   
 }

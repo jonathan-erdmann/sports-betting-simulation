@@ -231,7 +231,9 @@ get_nba_scores <- function(iOffset = 1) {
   date_string <- gsub("-","",Sys.Date() - iOffset)
   url <- paste0("https://www.espn.com/nba/scoreboard/_/date/", date_string)
   
-  webpage <- read_html(url)
+  webpage <- download.file(url, destfile = "temp.html", quiet=TRUE)
+  webpage <- read_html("temp.html")
+  #webpage <- read_html(url)
   
   team_name <- webpage %>% html_elements("div") %>% html_elements(".truncate.db") %>% html_text()
   
@@ -273,7 +275,9 @@ get_nhl_scores <- function(iOffset = 1) {
   date_string <- gsub("-","",Sys.Date() - iOffset)
   url <- paste0("https://www.espn.com/nhl/scoreboard/_/date/", date_string)
   
-  webpage <- read_html(url)
+  webpage <- download.file(url, destfile = "temp.html", quiet=TRUE)
+  webpage <- read_html("temp.html")
+  #webpage <- read_html(url)
   
   team_name <- webpage %>% html_elements("div") %>% html_elements(".truncate.db") %>% html_text()
   
