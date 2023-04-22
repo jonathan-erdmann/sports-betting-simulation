@@ -139,6 +139,8 @@ get_nba_daily_bets <- function(iDB) {
   bet_input <- bet_input %>% 
     relocate(game_id, league_id, team_id, date, location, team_name, win_probability, moneyline, odds, kelly_bet)
   
+  bet_input <- bet_input %>% drop_na(team_id)
+  
   return(bet_input)
   
 }
@@ -193,7 +195,7 @@ get_nhl_daily_bets <- function(iDB) {
   #-- Join Probabilities and Payouts
   bet_input  <- left_join(games, moneylines, by=join_by(league_id, team_name))
   
-  #-- Get MLB Team Names
+  #-- Get NHL Team Names
   nhl_db_data <- dbGetQuery(iDB, "select * from teams where league_id = 4;")
   
   bet_input <- attach_game_id(left_join(bet_input, nhl_db_data, by=join_by(league_id, team_name))) %>%
@@ -205,6 +207,8 @@ get_nhl_daily_bets <- function(iDB) {
   
   bet_input <- bet_input %>% 
     relocate(game_id, league_id, team_id, date, location, team_name, win_probability, moneyline, odds, kelly_bet)
+  
+  bet_input <- bet_input %>% drop_na(team_id)
   
   return(bet_input)
   
