@@ -1,5 +1,7 @@
 library(rvest)
 library(dplyr)
+library(httr)
+library(jsonlite)
 
 #-- Return NHL Win Probabilities
 get_nhl_win_probabilities <- function() {
@@ -119,7 +121,7 @@ get_nba_money_lines <- function() {
   league_id <- 1
   league_id <- rep(league_id, length(moneyline))
   
-  #-- Return Probabilities
+  #-- Return Money Lines
   money_lines <- data.frame(league_id, team_name, moneyline)
   
   return(money_lines)
@@ -146,7 +148,7 @@ get_mlb_money_lines <- function() {
   league_id <- 2
   league_id <- rep(league_id, length(moneyline))
   
-  #-- Return Probabilities
+  #-- Return Money Lines
   money_lines <- data.frame(league_id, team_name, moneyline)
   
   return(money_lines)

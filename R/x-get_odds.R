@@ -12,7 +12,7 @@ api_key <- "749f478f25f0f60f8ccb79948827ee1f"
   mlb_data_json <- fromJSON(rawToChar(mlb_data_raw$content))
   
   mlb_data_prep <- mlb_data_json
-  mlb_data_prep$date <- strtrim(mlb_data_json$commence_time, 10)
+  mlb_data_prep$date <- convert_zulu_to_local_date(mlb_data_json$commence_time)
   mlb_data_prep <- mlb_data_prep %>% filter(date == Sys.Date()) %>% select("date","home_team","away_team")
   
   mlb_home_odds_list <- rep(0,nrow(mlb_data_prep))
@@ -54,7 +54,7 @@ api_key <- "749f478f25f0f60f8ccb79948827ee1f"
   nhl_data_prep <- nhl_data_json
   
   #Extract game start in local time
-  nhl_data_prep$date <- as.Date(format(as.POSIXct(nhl_data_json$commence_time , format="%Y-%m-%dT%H:%M:%S", tz="UTC"), tz=Sys.timezone(), usetz=TRUE))
+  nhl_data_prep$date <- convert_zulu_to_local_date(nhl_data_json$commence_time)
   
   nhl_data_prep <- nhl_data_prep %>% filter(date == Sys.Date()) %>% select("date","home_team","away_team")
   
@@ -97,7 +97,7 @@ api_key <- "749f478f25f0f60f8ccb79948827ee1f"
   nba_data_prep <- nba_data_json
   
   #Extract game start in local time
-  nba_data_prep$date <- as.Date(format(as.POSIXct(nba_data_json$commence_time , format="%Y-%m-%dT%H:%M:%S", tz="UTC"), tz=Sys.timezone(), usetz=TRUE))
+  nba_data_prep$date <- as.Dateconvert_zulu_to_local_date(nba_data_json$commence_time)
   
   nba_data_prep <- nba_data_prep %>% filter(date == Sys.Date()) %>% select("date","home_team","away_team")
   

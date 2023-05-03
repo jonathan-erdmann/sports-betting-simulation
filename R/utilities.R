@@ -337,3 +337,209 @@ get_estimated_return_percentile <- function(iBets) {
   return(estimated_return_percentile)
   
 }
+
+#-- Convert Zulu time returned by odds API to local date
+convert_zulu_to_local_date <- function(iDateTime) {
+  
+  date_local <- as.Date(format(as.POSIXct(iDateTime , format="%Y-%m-%dT%H:%M:%S", tz="UTC"), tz=Sys.timezone(), usetz=TRUE))
+
+  return(date_local)
+}
+
+#-- Convert Zulu time returned by odds API to local datetime
+convert_zulu_to_local_datetime <- function(iDateTime) {
+  
+  datetime_local <- format(as.POSIXct(iDateTime , format="%Y-%m-%dT%H:%M:%S", tz="UTC"), tz=Sys.timezone(), usetz=TRUE)
+  
+  return(datetime_local)
+  
+}
+
+get_mlb_odds <- function(iKey) {
+  
+  #Input: iKey - API Key to the odds api 
+  #Output: Vector of odds
+  
+  #Fetch Data
+  mlb_key <- "baseball_mlb"
+  url <- paste0("https://api.the-odds-api.com/v4/sports/",mlb_key,"/odds/?apiKey=",iKey,"&regions=us&markets=h2h")
+  
+  mlb_data_raw <- GET(url)
+  mlb_data_json <- fromJSON(rawToChar(mlb_data_raw$content))
+  
+  #Prepare Data
+  mlb_data_prep <- mlb_data_json
+  mlb_data_prep$date <- convert_zulu_to_local_date(mlb_data_json$commence_time)
+  mlb_data_prep$datetime <- convert_zulu_to_local_datetime(mlb_data_json$commence_time)
+  mlb_data_prep <- mlb_data_prep %>% filter(date == Sys.Date()) %>% select("date","datetime","home_team","away_team")
+  
+  mlb_home_odds_list <- rep(0,nrow(mlb_data_prep))
+  mlb_away_odds_list <- rep(0,nrow(mlb_data_prep))
+  
+  for (ii in 1:nrow(mlb_data_prep)) {
+    
+    mlb_away_odds_list[ii] <- data.frame((data.frame(mlb_data_json$bookmakers[ii]) %>% filter(key=="draftkings"))[[4]][[1]][[3]])$price[1] - 1
+    mlb_home_odds_list[ii] <- data.frame((data.frame(mlb_data_json$bookmakers[ii]) %>% filter(key=="draftkings"))[[4]][[1]][[3]])$price[2] - 1
+    
+  }
+  
+  mlb_data_prep$home_odds <- mlb_home_odds_list
+  mlb_data_prep$away_odds <- mlb_away_odds_list
+  mlb_data_prep <- mlb_data_prep %>% arrange(home_team, datetime) %>% mutate(game_number = 1)
+  
+  date_today <- rep(mlb_data_prep$date[1], 2*nrow(mlb_data_prep))
+  team_name <- rep(1,2*nrow(mlb_data_prep))
+  odds <- rep(1,2*nrow(mlb_data_prep))
+  game_number <- rep(1,2*nrow(mlb_data_prep))
+  
+  for (ii in 1:nrow(mlb_data_prep)) {
+    
+    if (ii > 1 && mlb_data_prep$home_team[ii] == mlb_data_prep$home_team[ii-1]) {
+      
+      mlb_data_prep$game_number[ii] <- mlb_data_prep$game_number[ii-1] + 1
+      
+    }
+    
+    team_name[2*ii - 1] <- mlb_data_prep$home_team[ii]
+    odds[2*ii - 1] <- mlb_data_prep$home_odds[ii]
+    
+    team_name[2*ii] <- mlb_data_prep$away_team[ii]
+    odds[2*ii] <- mlb_data_prep$away_odds[ii]
+    
+    game_number[2*ii - 1] <- mlb_data_prep$game_number[ii]
+    game_number[2*ii] <- mlb_data_prep$game_number[ii]
+    
+    
+  }
+  
+  mlb_odds <- data.frame(date_today,game_number, team_name,odds)
+  
+  return(mlb_odds)
+  
+}
+
+get_nhl_odds <- function(iKey) {
+  
+  #Input: iKey - API Key to the odds api 
+  #Output: Vector of odds
+  
+  #Fetch Data
+  nhl_key <- "icehockey_nhl"
+  url <- paste0("https://api.the-odds-api.com/v4/sports/",nhl_key,"/odds/?apiKey=",iKey,"&regions=us&markets=h2h")
+  
+  nhl_data_raw <- GET(url)
+  nhl_data_json <- fromJSON(rawToChar(nhl_data_raw$content))
+  
+  #Prepare Data
+  nhl_data_prep <- nhl_data_json
+  nhl_data_prep$date <- convert_zulu_to_local_date(nhl_data_json$commence_time)
+  nhl_data_prep$datetime <- convert_zulu_to_local_datetime(nhl_data_json$commence_time)
+  nhl_data_prep <- nhl_data_prep %>% filter(date == Sys.Date()) %>% select("date","datetime","home_team","away_team")
+  
+  nhl_home_odds_list <- rep(0,nrow(nhl_data_prep))
+  nhl_away_odds_list <- rep(0,nrow(nhl_data_prep))
+  
+  for (ii in 1:nrow(nhl_data_prep)) {
+    
+    nhl_away_odds_list[ii] <- data.frame((data.frame(nhl_data_json$bookmakers[ii]) %>% filter(key=="draftkings"))[[4]][[1]][[3]])$price[1] - 1
+    nhl_home_odds_list[ii] <- data.frame((data.frame(nhl_data_json$bookmakers[ii]) %>% filter(key=="draftkings"))[[4]][[1]][[3]])$price[2] - 1
+    
+  }
+  
+  nhl_data_prep$home_odds <- nhl_home_odds_list
+  nhl_data_prep$away_odds <- nhl_away_odds_list
+  nhl_data_prep <- nhl_data_prep %>% arrange(home_team, datetime) %>% mutate(game_number = 1)
+  
+  date_today <- rep(nhl_data_prep$date[1], 2*nrow(nhl_data_prep))
+  team_name <- rep(1,2*nrow(nhl_data_prep))
+  odds <- rep(1,2*nrow(nhl_data_prep))
+  game_number <- rep(1,2*nrow(nhl_data_prep))
+  
+  for (ii in 1:nrow(nhl_data_prep)) {
+    
+    if (ii > 1 && nhl_data_prep$home_team[ii] == nhl_data_prep$home_team[ii-1]) {
+      
+      nhl_data_prep$game_number[ii] <- nhl_data_prep$game_number[ii-1] + 1
+      
+    }
+    
+    team_name[2*ii - 1] <- nhl_data_prep$home_team[ii]
+    odds[2*ii - 1] <- nhl_data_prep$home_odds[ii]
+    
+    team_name[2*ii] <- nhl_data_prep$away_team[ii]
+    odds[2*ii] <- nhl_data_prep$away_odds[ii]
+    
+    game_number[2*ii - 1] <- nhl_data_prep$game_number[ii]
+    game_number[2*ii] <- nhl_data_prep$game_number[ii]
+    
+    
+  }
+  
+  nhl_odds <- data.frame(date_today, game_number, team_name,odds)
+  
+  return(nhl_odds)
+  
+}
+
+get_nba_odds <- function(iKey) {
+  
+  #Input: iKey - API Key to the odds api 
+  #Output: Vector of odds
+  
+  #Fetch Data
+  nba_key <- "basketball_nba"
+  url <- paste0("https://api.the-odds-api.com/v4/sports/",nba_key,"/odds/?apiKey=",iKey,"&regions=us&markets=h2h")
+  
+  nba_data_raw <- GET(url)
+  nba_data_json <- fromJSON(rawToChar(nba_data_raw$content))
+  
+  #Prepare Data
+  nba_data_prep <- nba_data_json
+  nba_data_prep$date <- convert_zulu_to_local_date(nba_data_json$commence_time)
+  nba_data_prep$datetime <- convert_zulu_to_local_datetime(nba_data_json$commence_time)
+  nba_data_prep <- nba_data_prep %>% filter(date == Sys.Date()) %>% select("date","datetime","home_team","away_team")
+  
+  nba_home_odds_list <- rep(0,nrow(nba_data_prep))
+  nba_away_odds_list <- rep(0,nrow(nba_data_prep))
+  
+  for (ii in 1:nrow(nba_data_prep)) {
+    
+    nba_away_odds_list[ii] <- data.frame((data.frame(nba_data_json$bookmakers[ii]) %>% filter(key=="draftkings"))[[4]][[1]][[3]])$price[1] - 1
+    nba_home_odds_list[ii] <- data.frame((data.frame(nba_data_json$bookmakers[ii]) %>% filter(key=="draftkings"))[[4]][[1]][[3]])$price[2] - 1
+    
+  }
+  
+  nba_data_prep$home_odds <- nba_home_odds_list
+  nba_data_prep$away_odds <- nba_away_odds_list
+  nba_data_prep <- nba_data_prep %>% arrange(home_team, datetime) %>% mutate(game_number = 1)
+  
+  date_today <- rep(nba_data_prep$date[1], 2*nrow(nba_data_prep))
+  team_name <- rep(1,2*nrow(nba_data_prep))
+  odds <- rep(1,2*nrow(nba_data_prep))
+  game_number <- rep(1,2*nrow(nba_data_prep))
+  
+  for (ii in 1:nrow(nba_data_prep)) {
+    
+    if (ii > 1 && nba_data_prep$home_team[ii] == nba_data_prep$home_team[ii-1]) {
+      
+      nba_data_prep$game_number[ii] <- nba_data_prep$game_number[ii-1] + 1
+      
+    }
+    
+    team_name[2*ii - 1] <- nba_data_prep$home_team[ii]
+    odds[2*ii - 1] <- nba_data_prep$home_odds[ii]
+    
+    team_name[2*ii] <- nba_data_prep$away_team[ii]
+    odds[2*ii] <- nba_data_prep$away_odds[ii]
+    
+    game_number[2*ii - 1] <- nba_data_prep$game_number[ii]
+    game_number[2*ii] <- nba_data_prep$game_number[ii]
+    
+    
+  }
+  
+  nba_odds <- data.frame(date_today,game_number, team_name,odds)
+  
+  return(nba_odds)
+  
+}
